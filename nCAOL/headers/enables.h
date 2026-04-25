@@ -1,0 +1,4 @@
+#ifndef NIGMA_CAOL_ENABLES_H
+#define NIGMA_CAOL_ENABLES_H
+
+#endif

@@ -15,5 +15,16 @@ This enables *Modules* to implement various instructions that the Compiler may s
 
 Wow, that's a lot of instructions!
 
+## Setup
+```bash
+git clone https://github.com/D-863/Nigma_CEngine.git
+```
+Currently, there really isn't a required setup - Just move the 'nCAOL' directory into your respective project, and then simply include the starting node at 'nCAOL/headers/CAOL.h' as usual with my projects.
+
+While also moving the [LICENSE](https://github.com/D-863/Nigma_CAOL/blob/main/LICENSE) file into the 'nCAOL' directory and providing proper credits is appreciated, such is certainly not required! - I personally cannot care less, the [LICENSE](https://github.com/D-863/Nigma_CAOL/blob/main/LICENSE) is just there for legality. ¯\_(ツ)_/¯
+
+## QNA
+FUTURE_WEBSITE_FOR_DOCS_AND_QNA.
+
 ## MIT License
 main/[LICENSE](https://github.com/D-863/Nigma_CAOL/blob/main/LICENSE)
