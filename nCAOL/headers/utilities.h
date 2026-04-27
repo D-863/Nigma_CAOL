@@ -11,11 +11,16 @@
 #include <string.h>
 #include <errno.h>
 
-#if !defined(NIGMA_CAOL_ENABLES_PATH)
-    #define NIGMA_CAOL_ENABLES_PATH "enables.h"
+#if defined(NIGMA_CAOL_ENABLES_PATH)
+    #include NIGMA_CAOL_ENABLES_PATH
+#else
+    #include "enables.h"
 #endif
 
-#include NIGMA_CAOL_ENABLES_PATH
-#include "defines.h"
+#if defined(NIGMA_CAOL_DEFINES_PATH)
+    #include NIGMA_CAOL_DEFINES_PATH
+#else
+    #include "defines.h"
+#endif
 
 #endif

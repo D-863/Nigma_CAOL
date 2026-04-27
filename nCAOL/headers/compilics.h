@@ -900,30 +900,6 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_GCC
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_GCC
 
-
-    #if defined(__STDC_VERSION__)
-        #if (__STDC_VERSION__ == 199409L)
-            puts("C94/C95");
-        #elif (__STDC_VERSION__ == 199901L)
-            puts("C99");
-        #elif (__STDC_VERSION__ == 201112L)
-            puts("C11");
-        #elif (__STDC_VERSION__ == 201710L)
-            puts("C17/C18");
-        #elif (__STDC_VERSION__ == 202311L)
-            puts("C23");
-        #else
-            #error "nCAOL: Apologizes, but it seems like you're somehow using a undefined/unknown standard that is above ANSI C?.."
-        #endif
-    #else
-        #if defined(__STDC__)
-            puts("C89 & C90(ANSI C)");
-        #else
-            #error "nCAOL: Apologizes, but it seems like you're somehow using a undefined/unknown standard?.."
-        #endif
-    #endif
-
-
     #if (__STDC_VERSION__ != 202311L)
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
