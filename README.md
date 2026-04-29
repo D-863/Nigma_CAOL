@@ -2,14 +2,14 @@
 ![CAOL_LOGO](caol_icon.png)
 
 ## (Currently in developement.)
-nCAOL is a C based *Cross Architecture Operation Layer* in any space, created to implement *Operations* across vast Subjects in various Forms and Layers, yet without paying any additional unnecessary runtime cost despite Architecture type.
+nCAOL is a C based ***Cross Architecture Operation Layer*** in user space, created to implement ***Operations*** across vast Subjects in various Forms and Layers, yet without paying any additional unnecessary runtime cost despite Architecture type.
 
 It's also free for anyone, as in both speech and beer(Libre and Gratis, use it with freedom and without charge).
 
 ## Overview
-The goal with nCAOL is to provide a implementation of various Operations across vast Subjects, despite what instructions the current Architecture may provide.. And as the tier 'Layer' may convey, these Operation's respective instructions are integrated upon compilation and so they operate on their inputs with transparecy.
+The goal with nCAOL is to provide a implementation of various Operations across vast Subjects, despite what instructions the current Architecture may provide.. And as the tier 'Layer' may convey, these Operation's respective instructions are integrated upon compilation and hence they operate without validation.
 
-This enables *Modules* to implement various instructions that the Compiler may simply not enable like SIMD, sin, sqrt instructions; Or even Higher-Level operations from various Subjects like Calculus, Linear Algebra, Geometric Algebra and so on..
+This enables *Modules* to implement various instructions that the utilized Compiler may simply not enable like SIMD, sin, sqrt instructions; Or maybe even Higher-Level operations from various Subjects like Calculus, Linear Algebra, Geometric Algebra and so on..
 
 **Without** having to worry about the required fundamental steps of each operation or if the Architecture has a hardware alternative, or even how each Compiler enables the injection of Architecture-specific instructions.
 
