@@ -1,6 +1,8 @@
 #ifndef NIGMA_CAOL_COMPILIFICS_H
 #define NIGMA_CAOL_COMPILIFICS_H
 
+#include "standilics.h"
+
 /*Compiler-Specific identifications:
 FPGA_Specfic:
     Altium:
@@ -81,12 +83,12 @@ Generic:
 #define CAOL_COMPILIFICS_DEF_COMPSUB_RiscV   2
 #define CAOL_COMPILIFICS_DEF_COMPSUB_Generic 3
 
-#define CAOL_COMPILIFICS_DEF_COMPNAME_Altium      0
-#define CAOL_COMPILIFICS_DEF_COMPNAME_KEIL        1
-#define CAOL_COMPILIFICS_DEF_COMPNAME_ARMCompiler 2
-#define CAOL_COMPILIFICS_DEF_COMPNAME_Clang       3
-#define CAOL_COMPILIFICS_DEF_COMPNAME_GCC         4
-#define CAOL_COMPILIFICS_DEF_COMPNAME_MinGW       5
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium      0
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL        1
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_ARMCompiler 2
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_Clang       3
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_GCC         4
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_MinGW       5
 
 #define CAOL_COMPILIFICS_DEF_COMPID_MicroBlazeC  0
 #define CAOL_COMPILIFICS_DEF_COMPID_CtoHardware  1
@@ -101,7 +103,7 @@ Generic:
 #define CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_64B 10
 
 #if defined(__CMB__)
-    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented."
+    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //Altium MicroBlaze C
     /*
         __VERSION__ = VRRR
@@ -113,10 +115,20 @@ Generic:
             VRRRPPP: Build number
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_FPGA
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_Altium
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_MicroBlazeC
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_MicroBlazeC
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -143,7 +155,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -215,7 +227,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif defined(__CHC__)
-    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented."
+    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //Altium C-to-Hardware
     /*
         __VERSION__ = VRRR
@@ -227,10 +239,20 @@ Generic:
             VRRRPPP: Build number
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_FPGA
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_Altium
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_CtoHardware
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_CtoHardware
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -257,7 +279,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -329,7 +351,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif (defined(__CA__) || defined(__KEIL__))
-    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented."
+    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL CARM
     /*
         __CA__ = VRR
@@ -337,10 +359,20 @@ Generic:
         RR: Revision
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_KEIL
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_CARM
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_CARM
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -367,7 +399,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -439,7 +471,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif defined(__C166__)
-    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented."
+    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL C166
     /*
         __C166__ = VRR
@@ -447,10 +479,20 @@ Generic:
         RR: Revision
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_KEIL
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_C166
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_C166
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -477,7 +519,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -549,7 +591,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif (defined(__C51__) || defined(__CX51__))
-    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented."
+    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL C51
     /*
         __C51__ = VRR
@@ -557,10 +599,20 @@ Generic:
         RR: Revision
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_KEIL
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_C51
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_C51
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -587,7 +639,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -659,7 +711,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif defined(__CC_ARM)
-    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented."
+    #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //ARM Compiler
     /*
         __ARMCC_VERSION = VRPBBB
@@ -669,10 +721,20 @@ Generic:
             BBB: Build
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_ARMCompiler
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_ARMCompiler
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_ARMCompiler
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_ARMCompiler
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -699,7 +761,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -785,10 +847,20 @@ Generic:
             P: Patch level
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_Generic
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_Clang
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_Clang
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_Clang
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_Clang
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -815,7 +887,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -823,67 +895,67 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_aligned(alignment)                              aligned(alignment)
     #define CAOL_COMPILIFICS_DEF_GETEXT_alloc_align(position)                           alloc_align(position)
     #define CAOL_COMPILIFICS_DEF_GETEXT_alloc_size(...)                                 alloc_size(__VA_ARGS__)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_always_inline                                   always_inline
-    #define CAOL_COMPILIFICS_DEF_GETEXT_artificial                                      artificial
+    #define CAOL_COMPILIFICS_DEF_GETEXT_always_inline()                                 always_inline
+    #define CAOL_COMPILIFICS_DEF_GETEXT_artificial()                                    artificial
     #define CAOL_COMPILIFICS_DEF_GETEXT_assume_aligned(...)                             assume_aligned(__VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_btf_decl_tag(str)                               btf_decl_tag(str)
     #define CAOL_COMPILIFICS_DEF_GETEXT_btf_type_tag(arg)                               btf_type_tag(arg)
     #define CAOL_COMPILIFICS_DEF_GETEXT_cleanup(func)                                   cleanup(func)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_cold                                            cold
-    #define CAOL_COMPILIFICS_DEF_GETEXT_hot                                             hot
-    #define CAOL_COMPILIFICS_DEF_GETEXT_common                                          common
-    #define CAOL_COMPILIFICS_DEF_GETEXT_nocommon                                        nocommon
-    #define CAOL_COMPILIFICS_DEF_GETEXT_const                                           const
+    #define CAOL_COMPILIFICS_DEF_GETEXT_cold()                                          cold
+    #define CAOL_COMPILIFICS_DEF_GETEXT_hot()                                           hot
+    #define CAOL_COMPILIFICS_DEF_GETEXT_common()                                        common
+    #define CAOL_COMPILIFICS_DEF_GETEXT_nocommon()                                      nocommon
+    #define CAOL_COMPILIFICS_DEF_GETEXT_const()                                         const
     #define CAOL_COMPILIFICS_DEF_GETEXT_constructor(priority)                           constructor(priority)
     #define CAOL_COMPILIFICS_DEF_GETEXT_destructor(priority)                            destructor(priority)
     #define CAOL_COMPILIFICS_DEF_GETEXT_counted_by(count)                               counted_by(count)
     #define CAOL_COMPILIFICS_DEF_GETEXT_error(msg)                                      error(msg)
     #define CAOL_COMPILIFICS_DEF_GETEXT_warning(msg)                                    warning(msg)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_flag_enum                                       flag_enum
-    #define CAOL_COMPILIFICS_DEF_GETEXT_flatten                                         flatten
+    #define CAOL_COMPILIFICS_DEF_GETEXT_flag_enum()                                     flag_enum
+    #define CAOL_COMPILIFICS_DEF_GETEXT_flatten()                                       flatten
     #define CAOL_COMPILIFICS_DEF_GETEXT_format(archetype, string_index, first_to_check) format(archetype, string_index, first_to_check)
     #define CAOL_COMPILIFICS_DEF_GETEXT_format_arg(string_index)                        format_arg(string_index)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_gnu_inline                                      gnu_inline
+    #define CAOL_COMPILIFICS_DEF_GETEXT_gnu_inline()                                    gnu_inline
     #define CAOL_COMPILIFICS_DEF_GETEXT_ifunc(resolver)                                 ifunc(resolver)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_interrupt                                       interrupt
-    #define CAOL_COMPILIFICS_DEF_GETEXT_leaf                                            leaf
+    #define CAOL_COMPILIFICS_DEF_GETEXT_interrupt()                                     interrupt
+    #define CAOL_COMPILIFICS_DEF_GETEXT_leaf()                                          leaf
     #define CAOL_COMPILIFICS_DEF_GETEXT_malloc(...)                                     malloc __VA_ARGS__
-    #define CAOL_COMPILIFICS_DEF_GETEXT_may_alias                                       may_alias
+    #define CAOL_COMPILIFICS_DEF_GETEXT_may_alias()                                     may_alias
     #define CAOL_COMPILIFICS_DEF_GETEXT_mode(mode)                                      mode(mode)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_musttail                                        musttail
-    #define CAOL_COMPILIFICS_DEF_GETEXT_naked                                           naked
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_profile_instrument_function                  no_profile_instrument_function
+    #define CAOL_COMPILIFICS_DEF_GETEXT_musttail()                                      musttail
+    #define CAOL_COMPILIFICS_DEF_GETEXT_naked()                                         naked
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_profile_instrument_function()                no_profile_instrument_function
     #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize(option)                             no_sanitize(option)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_address                             no_sanitize_address
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_address_safety_analysis                      no_address_safety_analysis
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_thread                              no_sanitize_thread
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_split_stack                                  no_split_stack
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector                              no_stack_protector
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector                              no_stack_protector
-    #define CAOL_COMPILIFICS_DEF_GETEXT_noinline                                        noinline
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_address()                           no_sanitize_address
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_address_safety_analysis()                    no_address_safety_analysis
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_thread()                            no_sanitize_thread
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_split_stack()                                no_split_stack
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector()                            no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector()                            no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_GETEXT_noinline()                                      noinline
     #define CAOL_COMPILIFICS_DEF_GETEXT_nonnull(...)                                    nonnull __VA_ARGS__
-    #define CAOL_COMPILIFICS_DEF_GETEXT_nonstring                                       nonstring
-    #define CAOL_COMPILIFICS_DEF_GETEXT_nothrow                                         nothrow
-    #define CAOL_COMPILIFICS_DEF_GETEXT_optimize                                        optimize
-    #define CAOL_COMPILIFICS_DEF_GETEXT_packed                                          packed
-    #define CAOL_COMPILIFICS_DEF_GETEXT_patchable_function_entry                        patchable_function_entry
-    #define CAOL_COMPILIFICS_DEF_GETEXT_pure                                            pure
-    #define CAOL_COMPILIFICS_DEF_GETEXT_retain                                          retain
-    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_nonnull                                 returns_nonnull
-    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_twice                                   returns_twice
+    #define CAOL_COMPILIFICS_DEF_GETEXT_nonstring()                                     nonstring
+    #define CAOL_COMPILIFICS_DEF_GETEXT_nothrow()                                       nothrow
+    #define CAOL_COMPILIFICS_DEF_GETEXT_optimize()                                      optimize
+    #define CAOL_COMPILIFICS_DEF_GETEXT_packed()                                        packed
+    #define CAOL_COMPILIFICS_DEF_GETEXT_patchable_function_entry()                      patchable_function_entry
+    #define CAOL_COMPILIFICS_DEF_GETEXT_pure()                                          pure
+    #define CAOL_COMPILIFICS_DEF_GETEXT_retain()                                        retain
+    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_nonnull()                               returns_nonnull
+    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_twice()                                 returns_twice
     #define CAOL_COMPILIFICS_DEF_GETEXT_section(section)                                section(section)
     #define CAOL_COMPILIFICS_DEF_GETEXT_sentinel(position)                              sentinel(position)
     #define CAOL_COMPILIFICS_DEF_GETEXT_target(...)                                     target(__VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_target_version(option)                          target_version(option)
     #define CAOL_COMPILIFICS_DEF_GETEXT_target_clones(options)                          target_clones(options)
     #define CAOL_COMPILIFICS_DEF_GETEXT_tls_model(tls_model)                            tls_model(tls_model)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_transparent_union                               transparent_union
+    #define CAOL_COMPILIFICS_DEF_GETEXT_transparent_union()                             transparent_union
     #define CAOL_COMPILIFICS_DEF_GETEXT_unavailable(msg)                                unavailable(msg)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_uninitialized                                   uninitialized
-    #define CAOL_COMPILIFICS_DEF_GETEXT_used                                            used
+    #define CAOL_COMPILIFICS_DEF_GETEXT_uninitialized()                                 uninitialized
+    #define CAOL_COMPILIFICS_DEF_GETEXT_used()                                          used
     #define CAOL_COMPILIFICS_DEF_GETEXT_vector_size(bytes)                              vector_size(bytes)
     #define CAOL_COMPILIFICS_DEF_GETEXT_visibility(visibility_type)                     visibility(visibility_type)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_weak                                            weak
+    #define CAOL_COMPILIFICS_DEF_GETEXT_weak()                                          weak
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif defined(__GNUC__)
@@ -897,10 +969,20 @@ Generic:
             P: Patch (introduced in version 3.0)
     */
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_Generic
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_GCC
-    #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_GCC
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_GCC
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_GCC
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -927,7 +1009,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -1001,7 +1083,7 @@ Generic:
 #elif (defined(__MINGW32__) || defined(__MINGW32_MAJOR_VERSION) || defined(__MINGW32_MINOR_VERSION))
     //MinGW
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_Generic
-    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_MinGW
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_MinGW
 
     #if (defined(__MINGW64_VERSION_MAJOR) || defined(__MINGW64_VERSION_MINOR))
         #if defined(__MINGW64__)
@@ -1016,7 +1098,17 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_MinGW32
     #endif
 
-    #if (__STDC_VERSION__ != 202311L)
+    #if (caolStandilics(STD, ID) < caolStandilics(C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+    #if (caolStandilics(STD, ID) < caolStandilics(C23))
         #define CAOL_COMPILIFICS_DEF_EXT(ext)  __attribute__((ext))
         #define CAOL_COMPILIFICS_DEF_EXT_START __attribute__((
         #define CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(ext) ext
@@ -1043,7 +1135,7 @@ Generic:
         #define CAOL_COMPILIFICS_DEF_GETEXT_unsequenced     unsequenced
         #define CAOL_COMPILIFICS_DEF_GETEXT_reproducible    reproducible
     #endif
-    #define CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##single(ext, __VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ...) CAOL_COMPILIFICS_DEF_GETEXT_##bWrap(ext, __VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_0(ext, ...) CAOL_COMPILIFICS_DEF_EXT_NAMESPACE(CAOL_COMPILIFICS_DEF_GETEXT_##ext(__VA_ARGS__))
     #define CAOL_COMPILIFICS_DEF_GETEXT_1(ext, ...) CAOL_COMPILIFICS_DEF_EXT(CAOL_COMPILIFICS_DEF_GETEXT_0(ext, __VA_ARGS__))
 
@@ -1051,189 +1143,160 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_GETEXT_aligned(alignment)                              aligned(alignment)
     #define CAOL_COMPILIFICS_DEF_GETEXT_alloc_align(position)                           alloc_align(position)
     #define CAOL_COMPILIFICS_DEF_GETEXT_alloc_size(...)                                 alloc_size(__VA_ARGS__)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_always_inline                                   always_inline
-    #define CAOL_COMPILIFICS_DEF_GETEXT_artificial                                      artificial
+    #define CAOL_COMPILIFICS_DEF_GETEXT_always_inline()                                 always_inline
+    #define CAOL_COMPILIFICS_DEF_GETEXT_artificial()                                    artificial
     #define CAOL_COMPILIFICS_DEF_GETEXT_assume_aligned(...)                             assume_aligned(__VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_btf_decl_tag(str)                               btf_decl_tag(str)
     #define CAOL_COMPILIFICS_DEF_GETEXT_btf_type_tag(arg)                               btf_type_tag(arg)
     #define CAOL_COMPILIFICS_DEF_GETEXT_cleanup(func)                                   cleanup(func)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_cold                                            cold
-    #define CAOL_COMPILIFICS_DEF_GETEXT_hot                                             hot
-    #define CAOL_COMPILIFICS_DEF_GETEXT_common                                          common
-    #define CAOL_COMPILIFICS_DEF_GETEXT_nocommon                                        nocommon
-    #define CAOL_COMPILIFICS_DEF_GETEXT_const                                           const
+    #define CAOL_COMPILIFICS_DEF_GETEXT_cold()                                          cold
+    #define CAOL_COMPILIFICS_DEF_GETEXT_hot()                                           hot
+    #define CAOL_COMPILIFICS_DEF_GETEXT_common()                                        common
+    #define CAOL_COMPILIFICS_DEF_GETEXT_nocommon()                                      nocommon
+    #define CAOL_COMPILIFICS_DEF_GETEXT_const()                                         const
     #define CAOL_COMPILIFICS_DEF_GETEXT_constructor(priority)                           constructor(priority)
     #define CAOL_COMPILIFICS_DEF_GETEXT_destructor(priority)                            destructor(priority)
     #define CAOL_COMPILIFICS_DEF_GETEXT_counted_by(count)                               counted_by(count)
     #define CAOL_COMPILIFICS_DEF_GETEXT_error(msg)                                      error(msg)
     #define CAOL_COMPILIFICS_DEF_GETEXT_warning(msg)                                    warning(msg)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_flag_enum                                       flag_enum
-    #define CAOL_COMPILIFICS_DEF_GETEXT_flatten                                         flatten
+    #define CAOL_COMPILIFICS_DEF_GETEXT_flag_enum()                                     flag_enum
+    #define CAOL_COMPILIFICS_DEF_GETEXT_flatten()                                       flatten
     #define CAOL_COMPILIFICS_DEF_GETEXT_format(archetype, string_index, first_to_check) format(archetype, string_index, first_to_check)
     #define CAOL_COMPILIFICS_DEF_GETEXT_format_arg(string_index)                        format_arg(string_index)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_gnu_inline                                      gnu_inline
+    #define CAOL_COMPILIFICS_DEF_GETEXT_gnu_inline()                                    gnu_inline
     #define CAOL_COMPILIFICS_DEF_GETEXT_ifunc(resolver)                                 ifunc(resolver)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_interrupt                                       interrupt
-    #define CAOL_COMPILIFICS_DEF_GETEXT_leaf                                            leaf
+    #define CAOL_COMPILIFICS_DEF_GETEXT_interrupt()                                     interrupt
+    #define CAOL_COMPILIFICS_DEF_GETEXT_leaf()                                          leaf
     #define CAOL_COMPILIFICS_DEF_GETEXT_malloc(...)                                     malloc __VA_ARGS__
-    #define CAOL_COMPILIFICS_DEF_GETEXT_may_alias                                       may_alias
+    #define CAOL_COMPILIFICS_DEF_GETEXT_may_alias()                                     may_alias
     #define CAOL_COMPILIFICS_DEF_GETEXT_mode(mode)                                      mode(mode)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_musttail                                        musttail
-    #define CAOL_COMPILIFICS_DEF_GETEXT_naked                                           naked
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_profile_instrument_function                  no_profile_instrument_function
+    #define CAOL_COMPILIFICS_DEF_GETEXT_musttail()                                      musttail
+    #define CAOL_COMPILIFICS_DEF_GETEXT_naked()                                         naked
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_profile_instrument_function()                no_profile_instrument_function
     #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize(option)                             no_sanitize(option)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_address                             no_sanitize_address
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_address_safety_analysis                      no_address_safety_analysis
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_thread                              no_sanitize_thread
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_split_stack                                  no_split_stack
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector                              no_stack_protector
-    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector                              no_stack_protector
-    #define CAOL_COMPILIFICS_DEF_GETEXT_noinline                                        noinline
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_address()                           no_sanitize_address
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_address_safety_analysis()                    no_address_safety_analysis
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_sanitize_thread()                            no_sanitize_thread
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_split_stack()                                no_split_stack
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector()                            no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_GETEXT_no_stack_protector()                            no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_GETEXT_noinline()                                      noinline
     #define CAOL_COMPILIFICS_DEF_GETEXT_nonnull(...)                                    nonnull __VA_ARGS__
-    #define CAOL_COMPILIFICS_DEF_GETEXT_nonstring                                       nonstring
-    #define CAOL_COMPILIFICS_DEF_GETEXT_nothrow                                         nothrow
-    #define CAOL_COMPILIFICS_DEF_GETEXT_optimize                                        optimize
-    #define CAOL_COMPILIFICS_DEF_GETEXT_packed                                          packed
-    #define CAOL_COMPILIFICS_DEF_GETEXT_patchable_function_entry                        patchable_function_entry
-    #define CAOL_COMPILIFICS_DEF_GETEXT_pure                                            pure
-    #define CAOL_COMPILIFICS_DEF_GETEXT_retain                                          retain
-    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_nonnull                                 returns_nonnull
-    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_twice                                   returns_twice
+    #define CAOL_COMPILIFICS_DEF_GETEXT_nonstring()                                     nonstring
+    #define CAOL_COMPILIFICS_DEF_GETEXT_nothrow()                                       nothrow
+    #define CAOL_COMPILIFICS_DEF_GETEXT_optimize()                                      optimize
+    #define CAOL_COMPILIFICS_DEF_GETEXT_packed()                                        packed
+    #define CAOL_COMPILIFICS_DEF_GETEXT_patchable_function_entry()                      patchable_function_entry
+    #define CAOL_COMPILIFICS_DEF_GETEXT_pure()                                          pure
+    #define CAOL_COMPILIFICS_DEF_GETEXT_retain()                                        retain
+    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_nonnull()                               returns_nonnull
+    #define CAOL_COMPILIFICS_DEF_GETEXT_returns_twice()                                 returns_twice
     #define CAOL_COMPILIFICS_DEF_GETEXT_section(section)                                section(section)
     #define CAOL_COMPILIFICS_DEF_GETEXT_sentinel(position)                              sentinel(position)
     #define CAOL_COMPILIFICS_DEF_GETEXT_target(...)                                     target(__VA_ARGS__)
     #define CAOL_COMPILIFICS_DEF_GETEXT_target_version(option)                          target_version(option)
     #define CAOL_COMPILIFICS_DEF_GETEXT_target_clones(options)                          target_clones(options)
     #define CAOL_COMPILIFICS_DEF_GETEXT_tls_model(tls_model)                            tls_model(tls_model)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_transparent_union                               transparent_union
+    #define CAOL_COMPILIFICS_DEF_GETEXT_transparent_union()                             transparent_union
     #define CAOL_COMPILIFICS_DEF_GETEXT_unavailable(msg)                                unavailable(msg)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_uninitialized                                   uninitialized
-    #define CAOL_COMPILIFICS_DEF_GETEXT_used                                            used
+    #define CAOL_COMPILIFICS_DEF_GETEXT_uninitialized()                                 uninitialized
+    #define CAOL_COMPILIFICS_DEF_GETEXT_used()                                          used
     #define CAOL_COMPILIFICS_DEF_GETEXT_vector_size(bytes)                              vector_size(bytes)
     #define CAOL_COMPILIFICS_DEF_GETEXT_visibility(visibility_type)                     visibility(visibility_type)
-    #define CAOL_COMPILIFICS_DEF_GETEXT_weak                                            weak
+    #define CAOL_COMPILIFICS_DEF_GETEXT_weak()                                          weak
     #define CAOL_COMPILIFICS_DEF_GETEXT_weakref(target)                                 weakref(target)
     #define CAOL_COMPILIFICS_DEF_GETEXT_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #else
     #error "nCAOL: Apologizes, but it seems like the utilized compiler is unsupported! - But please do feel free to send a request, if you have the spare time."
 #endif
 
-/*
-    ? = Compier specific keywords.
-    () = Passable syntax, (a, b, c) resolves into [a], [b], [c] respectively.
-    [...] = Syntax, if () isn't used.
-
-    t:COMPILER(t, ...) {
-        [t]:SUBJECT = Current Compiler's subject.
-        [t]:NAME    = Current Compiler's name.
-        [t]:ID      = Current Compiler's ID.
-    }
-    t:EXT(t, ...) {
-        [t]:INLINE(...)     = "?static inline [...]"
-        [t]:DEPRECATED(msg) = "[...] ?:[msg]"
-        [t]:FALLTHROUGH     = "?"
-        [t]:NODISCARD       = "?"
-        [t]:MAYBE_UNUSED    = "?"
-        [t]:NORETURN        = "?"
-        [t]:UNSEQUENCED     = "?"
-        [t]:REPRODUCIBLE    = "?"
-    }
-    t:PACK(t, ...) {
-        [t]:X(...)     = "? [...]"
-        [t]:VAR(...)   = "? [...]"
-        [t]:UNION(...) = "union ? [...]"
-        [t]:STRUC(...) = "struct ? [...]"
-    }
-    t:FSTART(...) = "? [...]"
-    t:FSTOP(...)  = "? [...]"
-*/
-#define caolCompilifics(t, ...) CAOL_COMPILIFICS_##t(__VA_ARGS__)
-#define CAOL_COMPILIFICS_COMPILER(t, ...)   CAOL_COMPILIFICS_COMPILER_##t(__VA_ARGS__)
-#define CAOL_COMPILIFICS_COMPILER_SUBJECT() CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT
-#define CAOL_COMPILIFICS_COMPILER_NAME()    CAOL_COMPILIFICS_DEF_COMPILER_NAME
-#define CAOL_COMPILIFICS_COMPILER_ID()      CAOL_COMPILIFICS_DEF_COMPILER_ID
-
-#define CAOL_COMPILIFICS_EXT_START()    CAOL_COMPILIFICS_DEF_EXT_START
-#define CAOL_COMPILIFICS_EXT_STOP()     CAOL_COMPILIFICS_DEF_EXT_STOP
-#define CAOL_COMPILIFICS_GETEXT(ext, ...) CAOL_COMPILIFICS_EXT_##ext(0, ext, __VA_ARGS__)
-#define CAOL_COMPILIFICS_EXT(ext, ...)    CAOL_COMPILIFICS_EXT_##ext(1, ext, __VA_ARGS__)
-
-#define CAOL_COMPILIFICS_EXT_alias(single, ext, target)                                   CAOL_COMPILIFICS_DEF_GETEXT(single, ext, target)
-#define CAOL_COMPILIFICS_EXT_aligned(single, ext, alignment)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, alignment)
-#define CAOL_COMPILIFICS_EXT_alloc_align(single, ext, position)                           CAOL_COMPILIFICS_DEF_GETEXT(single, ext, position)
-#define CAOL_COMPILIFICS_EXT_alloc_size(single, ext, ...)                                 CAOL_COMPILIFICS_DEF_GETEXT(single, ext, __VA_ARGS__) //(posA, ?posB)
-#define CAOL_COMPILIFICS_EXT_always_inline(single, ext, ...)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, ) static inline __VA_ARGS__
-#define CAOL_COMPILIFICS_EXT_artificial(single, ext)                                      CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_assume_aligned(single, ext, ...)                             CAOL_COMPILIFICS_DEF_GETEXT(single, ext, __VA_ARGS__) //(alignment, ?offset)
-#define CAOL_COMPILIFICS_EXT_btf_decl_tag(single, ext, str)                               CAOL_COMPILIFICS_DEF_GETEXT(single, ext, str)
-#define CAOL_COMPILIFICS_EXT_btf_type_tag(single, ext, arg)                               CAOL_COMPILIFICS_DEF_GETEXT(single, ext, arg)
-#define CAOL_COMPILIFICS_EXT_cleanup(single, ext, func)                                   CAOL_COMPILIFICS_DEF_GETEXT(single, ext, func)
-#define CAOL_COMPILIFICS_EXT_cold(single, ext)                                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_hot(single, ext)                                             CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_common(single, ext)                                          CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_nocommon(single, ext)                                        CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_const(single, ext)                                           CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_constructor(single, ext, priority)                           CAOL_COMPILIFICS_DEF_GETEXT(single, ext, priority)
-#define CAOL_COMPILIFICS_EXT_destructor(single, ext, priority)                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, priority)
-#define CAOL_COMPILIFICS_EXT_counted_by(single, ext, count)                               CAOL_COMPILIFICS_DEF_GETEXT(single, ext, count)
-#define CAOL_COMPILIFICS_EXT_error(single, ext, msg)                                      CAOL_COMPILIFICS_DEF_GETEXT(single, ext, msg)
-#define CAOL_COMPILIFICS_EXT_warning(single, ext, msg)                                    CAOL_COMPILIFICS_DEF_GETEXT(single, ext, msg)
-#define CAOL_COMPILIFICS_EXT_flag_enum(single, ext)                                       CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_flatten(single, ext)                                         CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_format(single, ext, archetype, string_index, first_to_check) CAOL_COMPILIFICS_DEF_GETEXT(single, ext, archetype, string_index, first_to_check)
-#define CAOL_COMPILIFICS_EXT_format_arg(single, ext, string_index)                        CAOL_COMPILIFICS_DEF_GETEXT(single, ext, string_index)
-#define CAOL_COMPILIFICS_EXT_gnu_inline(single, ext)                                      CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_ifunc(single, ext, resolver)                                 CAOL_COMPILIFICS_DEF_GETEXT(single, ext, resolver)
-#define CAOL_COMPILIFICS_EXT_interrupt(single, ext)                                       CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_leaf(single, ext)                                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_malloc(single, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(single, ext, __VA_ARGS__) //?(deallocator, ?ptr_index)
-#define CAOL_COMPILIFICS_EXT_may_alias(single, ext)                                       CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_mode(single, ext, mode)                                      CAOL_COMPILIFICS_DEF_GETEXT(single, ext, mode)
-#define CAOL_COMPILIFICS_EXT_musttail(single, ext)                                        CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_naked(single, ext)                                           CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_profile_instrument_function(single, ext)                  CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_sanitize(single, ext, option)                             CAOL_COMPILIFICS_DEF_GETEXT(single, ext, option)
-#define CAOL_COMPILIFICS_EXT_no_sanitize_address(single, ext)                             CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_address_safety_analysis(single, ext)                      CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_sanitize_thread(single, ext)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_split_stack(single, ext)                                  CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_stack_protector(single, ext)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_no_stack_protector(single, ext)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_noinline(single, ext)                                        CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_nonnull(single, ext, ...)                                    CAOL_COMPILIFICS_DEF_GETEXT(single, ext, __VA_ARGS__) //?(arg_index0, ?...)
-#define CAOL_COMPILIFICS_EXT_nonstring(single, ext)                                       CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_nothrow(single, ext)                                         CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_optimize(single, ext)                                        CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_packed(single, ext)                                          CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_patchable_function_entry(single, ext)                        CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_pure(single, ext)                                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_retain(single, ext)                                          CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_returns_nonnull(single, ext)                                 CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_returns_twice(single, ext)                                   CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_section(single, ext, section)                                CAOL_COMPILIFICS_DEF_GETEXT(single, ext, section)
-#define CAOL_COMPILIFICS_EXT_sentinel(single, ext, position)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, position)
-#define CAOL_COMPILIFICS_EXT_target(single, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(single, ext, __VA_ARGS__)
-#define CAOL_COMPILIFICS_EXT_target_version(single, ext, option)                          CAOL_COMPILIFICS_DEF_GETEXT(single, ext, option)
-#define CAOL_COMPILIFICS_EXT_target_clones(single, ext, options)                          CAOL_COMPILIFICS_DEF_GETEXT(single, ext, options)
-#define CAOL_COMPILIFICS_EXT_tls_model(single, ext, tls_model)                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, tls_model)
-#define CAOL_COMPILIFICS_EXT_transparent_union(single, ext)                               CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_unavailable(single, ext, msg)                                CAOL_COMPILIFICS_DEF_GETEXT(single, ext, msg)
-#define CAOL_COMPILIFICS_EXT_uninitialized(single, ext)                                   CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_used(single, ext)                                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_vector_size(single, ext, bytes)                              CAOL_COMPILIFICS_DEF_GETEXT(single, ext, bytes)
-#define CAOL_COMPILIFICS_EXT_visibility(single, ext, visibility_type)                     CAOL_COMPILIFICS_DEF_GETEXT(single, ext, visibility_type)
-#define CAOL_COMPILIFICS_EXT_weak(single, ext)                                            CAOL_COMPILIFICS_DEF_GETEXT(single, ext, )
-#define CAOL_COMPILIFICS_EXT_weakref(single, ext, target)                                 CAOL_COMPILIFICS_DEF_GETEXT(single, ext, target)
-#define CAOL_COMPILIFICS_EXT_zero_call_used_regs(single, ext, choice)                     CAOL_COMPILIFICS_DEF_GETEXT(single, ext, choice)
+#define caolCompilifics(t, ...) CAOL_COMPILIFICS_INTER_##t(__VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_COMPILER(t, ...) CAOL_COMPILIFICS_INTER_COMPILER_##t
+#define CAOL_COMPILIFICS_INTER_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT
+#define CAOL_COMPILIFICS_INTER_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN
+#define CAOL_COMPILIFICS_INTER_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPILER_ID
 
 
-#define CAOL_COMPILIFICS_PACK(t, ...) CAOL_COMPILIFICS_PACK_##t(__VA_ARGS__)
-#define CAOL_COMPILIFICS_PACK_X(...) __attribute__((packed)) __VA_ARGS__
-#define CAOL_COMPILIFICS_PACK_VAR(...) __attribute__((packed)) __VA_ARGS__
-#define CAOL_COMPILIFICS_PACK_UNION(...) union __attribute__((packed)) __VA_ARGS__
-#define CAOL_COMPILIFICS_PACK_STRUCT(...) struct __attribute__((packed)) __VA_ARGS__
+#define CAOL_COMPILIFICS_INTER_CURRENT(t, ...) CAOL_COMPILIFICS_INTER_CURRENT_##t
+#define CAOL_COMPILIFICS_INTER_CURRENT_FUNC CAOL_COMPILIFICS_DEF_CURRENT_FUNC
+#define CAOL_COMPILIFICS_INTER_CURRENT_FILE CAOL_COMPILIFICS_DEF_CURRENT_FILE
+#define CAOL_COMPILIFICS_INTER_CURRENT_LINE CAOL_COMPILIFICS_DEF_CURRENT_LINE
+#define CAOL_COMPILIFICS_INTER_CURRENT_DATE CAOL_COMPILIFICS_DEF_CURRENT_DATE
+#define CAOL_COMPILIFICS_INTER_CURRENT_TIME CAOL_COMPILIFICS_DEF_CURRENT_TIME
 
-#define CAOL_COMPILIFICS_FSTART(...) __attribute__((constructor)) __VA_ARGS__
-#define CAOL_COMPILIFICS_FSTOP(...) __attribute__((destructor)) __VA_ARGS__
+
+#define CAOL_COMPILIFICS_INTER_EXT_START() CAOL_COMPILIFICS_DEF_EXT_START
+#define CAOL_COMPILIFICS_INTER_EXT_STOP()  CAOL_COMPILIFICS_DEF_EXT_STOP
+
+#define CAOL_COMPILIFICS_INTER_GETEXT(ext, ...) CAOL_COMPILIFICS_INTER_EXT_##ext(0, ext, __VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_EXT(ext, ...)    CAOL_COMPILIFICS_INTER_EXT_##ext(1, ext, __VA_ARGS__)
+
+#define CAOL_COMPILIFICS_INTER_EXT_alias(bWrap, ext, target)                                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, target)
+#define CAOL_COMPILIFICS_INTER_EXT_aligned(bWrap, ext, alignment)                              CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, alignment)
+#define CAOL_COMPILIFICS_INTER_EXT_alloc_align(bWrap, ext, position)                           CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, position)
+#define CAOL_COMPILIFICS_INTER_EXT_alloc_size(bWrap, ext, ...)                                 CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, __VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_EXT_always_inline(bWrap, ext, ...)                              CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, ) static inline __VA_ARGS__
+#define CAOL_COMPILIFICS_INTER_EXT_artificial(bWrap, ext, ...)                                 CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_assume_aligned(bWrap, ext, ...)                             CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, __VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_EXT_btf_decl_tag(bWrap, ext, str)                               CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, str)
+#define CAOL_COMPILIFICS_INTER_EXT_btf_type_tag(bWrap, ext, arg)                               CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, arg)
+#define CAOL_COMPILIFICS_INTER_EXT_cleanup(bWrap, ext, func)                                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, func)
+#define CAOL_COMPILIFICS_INTER_EXT_cold(bWrap, ext, ...)                                       CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_hot(bWrap, ext, ...)                                        CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_common(bWrap, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_nocommon(bWrap, ext, ...)                                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_const(bWrap, ext, ...)                                      CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_constructor(bWrap, ext, priority)                           CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, priority)
+#define CAOL_COMPILIFICS_INTER_EXT_destructor(bWrap, ext, priority)                            CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, priority)
+#define CAOL_COMPILIFICS_INTER_EXT_counted_by(bWrap, ext, count)                               CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, count)
+#define CAOL_COMPILIFICS_INTER_EXT_error(bWrap, ext, msg)                                      CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, msg)
+#define CAOL_COMPILIFICS_INTER_EXT_warning(bWrap, ext, msg)                                    CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, msg)
+#define CAOL_COMPILIFICS_INTER_EXT_flag_enum(bWrap, ext, ...)                                  CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_flatten(bWrap, ext, ...)                                    CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_format(bWrap, ext, archetype, string_index, first_to_check) CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, archetype, string_index, first_to_check)
+#define CAOL_COMPILIFICS_INTER_EXT_format_arg(bWrap, ext, string_index)                        CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, string_index)
+#define CAOL_COMPILIFICS_INTER_EXT_gnu_inline(bWrap, ext, ...)                                 CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_ifunc(bWrap, ext, resolver)                                 CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, resolver)
+#define CAOL_COMPILIFICS_INTER_EXT_interrupt(bWrap, ext, ...)                                  CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_leaf(bWrap, ext, ...)                                       CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_malloc(bWrap, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, __VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_EXT_may_alias(bWrap, ext, ...)                                  CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_mode(bWrap, ext, mode)                                      CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, mode)
+#define CAOL_COMPILIFICS_INTER_EXT_musttail(bWrap, ext, ...)                                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_naked(bWrap, ext, ...)                                      CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_profile_instrument_function(bWrap, ext, ...)             CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_sanitize(bWrap, ext, option)                             CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, option)
+#define CAOL_COMPILIFICS_INTER_EXT_no_sanitize_address(bWrap, ext, ...)                        CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_address_safety_analysis(bWrap, ext, ...)                 CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_sanitize_thread(bWrap, ext, ...)                         CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_split_stack(bWrap, ext, ...)                             CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_stack_protector(bWrap, ext, ...)                         CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_no_stack_protector(bWrap, ext, ...)                         CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_noinline(bWrap, ext, ...)                                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_nonnull(bWrap, ext, ...)                                    CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, __VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_EXT_nonstring(bWrap, ext, ...)                                  CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_nothrow(bWrap, ext, ...)                                    CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_optimize(bWrap, ext, ...)                                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_packed(bWrap, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_patchable_function_entry(bWrap, ext, ...)                   CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_pure(bWrap, ext, ...)                                       CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_retain(bWrap, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_returns_nonnull(bWrap, ext, ...)                            CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_returns_twice(bWrap, ext, ...)                              CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_section(bWrap, ext, section)                                CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, section)
+#define CAOL_COMPILIFICS_INTER_EXT_sentinel(bWrap, ext, position)                              CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, position)
+#define CAOL_COMPILIFICS_INTER_EXT_target(bWrap, ext, ...)                                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, __VA_ARGS__)
+#define CAOL_COMPILIFICS_INTER_EXT_target_version(bWrap, ext, option)                          CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, option)
+#define CAOL_COMPILIFICS_INTER_EXT_target_clones(bWrap, ext, options)                          CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, options)
+#define CAOL_COMPILIFICS_INTER_EXT_tls_model(bWrap, ext, tls_model)                            CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, tls_model)
+#define CAOL_COMPILIFICS_INTER_EXT_transparent_union(bWrap, ext, ...)                          CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_unavailable(bWrap, ext, msg)                                CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, msg)
+#define CAOL_COMPILIFICS_INTER_EXT_uninitialized(bWrap, ext, ...)                              CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_used(bWrap, ext, ...)                                       CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_vector_size(bWrap, ext, bytes)                              CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, bytes)
+#define CAOL_COMPILIFICS_INTER_EXT_visibility(bWrap, ext, visibility_type)                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, visibility_type)
+#define CAOL_COMPILIFICS_INTER_EXT_weak(bWrap, ext, ...)                                       CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, )
+#define CAOL_COMPILIFICS_INTER_EXT_weakref(bWrap, ext, target)                                 CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, target)
+#define CAOL_COMPILIFICS_INTER_EXT_zero_call_used_regs(bWrap, ext, choice)                     CAOL_COMPILIFICS_DEF_GETEXT(bWrap, ext, choice)
 
 #endif

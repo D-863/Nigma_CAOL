@@ -1,7 +1,7 @@
 #ifndef NIGMA_CAOL_ARCHISPECS_H
 #define NIGMA_CAOL_ARCHISPECS_H
 
-#include "compilics.h"
+#include "stdlibraspecs.h"
 
 /*Architecture-Specific identifications:
 RISC:
@@ -183,24 +183,22 @@ CISC:
 #define CAOL_ARCHISPECS_DEF_ARCHCLASS_EPIC 1
 #define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC 2
 
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Alpha     0
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM       1
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM_Thumb 2
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM64     3
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Blackfin  4
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_MIPS      5
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_PowerPC   6
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_RS6000    7
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SPARC     8
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SuperH    9
-
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Alpha             0
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM               1
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM_Thumb         2
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM64             3
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Blackfin          4
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_MIPS              5
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_PowerPC           6
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_RS6000            7
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SPARC             8
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SuperH            9
 #define CAOL_ARCHISPECS_DEF_ARCHTYPE_IntelItanium_IA64 10
-
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_x86_64
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86_16Bit
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Motorola68k
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SystemZ
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_x86_64            11
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86         12
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86_16Bit   13
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Motorola68k       14
+#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SystemZ           15
 
 RISC:
 #define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
@@ -401,11 +399,10 @@ CISC:
 
 #if (defined(__x86_64__) || defined(_M_X64))
     //x86_64
-#elif (
-        defined(i386) ||
-        defined(__i386__) ||
-        defined(__i386) ||
-        defined(_M_IX86)
+#elif (defined(i386) ||
+       defined(__i386__) ||
+       defined(__i386) ||
+       defined(_M_IX86)
     )
     //x86_32
 #elif defined(__ARM_ARCH_2__)
@@ -418,27 +415,24 @@ CISC:
     //ARM5"
 #elif (defined(__ARM_ARCH_6T2_) || defined(__ARM_ARCH_6T2_))
     //ARM6T2
-#elif (
-        defined(__ARM_ARCH_6__) ||
-        defined(__ARM_ARCH_6J__) ||
-        defined(__ARM_ARCH_6K__) ||
-        defined(__ARM_ARCH_6Z__) ||
-        defined(__ARM_ARCH_6ZK__)
+#elif (defined(__ARM_ARCH_6__) ||
+       defined(__ARM_ARCH_6J__) ||
+       defined(__ARM_ARCH_6K__) ||
+       defined(__ARM_ARCH_6Z__) ||
+       defined(__ARM_ARCH_6ZK__)
     )
     //ARM6
-#elif (
-        defined(__ARM_ARCH_7__) ||
-        defined(__ARM_ARCH_7A__) ||
-        defined(__ARM_ARCH_7R__) ||
-        defined(__ARM_ARCH_7M__) ||
-        defined(__ARM_ARCH_7S__)
+#elif (defined(__ARM_ARCH_7__) ||
+       defined(__ARM_ARCH_7A__) ||
+       defined(__ARM_ARCH_7R__) ||
+       defined(__ARM_ARCH_7M__) ||
+       defined(__ARM_ARCH_7S__)
     )
     //ARM7
-#elif (
-        defined(__ARM_ARCH_7A__) ||
-        defined(__ARM_ARCH_7R__) ||
-        defined(__ARM_ARCH_7M__) ||
-        defined(__ARM_ARCH_7S__)
+#elif (defined(__ARM_ARCH_7A__) ||
+       defined(__ARM_ARCH_7R__) ||
+       defined(__ARM_ARCH_7M__) ||
+       defined(__ARM_ARCH_7S__)
     )
     //ARM7A
 #elif (defined(__ARM_ARCH_7R__) || defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7S__))
@@ -453,14 +447,14 @@ CISC:
     //MIPS
 #elif defined(__sh__)
     //SUPERH
-#elif (
-        defined(__powerpc) ||
-        defined(__powerpc__) ||
-        defined(__powerpc64__) ||
-        defined(__POWERPC__) ||
-        defined(__ppc__) ||
-        defined(__PPC__) ||
-        defined(_ARCH_PPC))
+#elif (defined(__powerpc) ||
+       defined(__powerpc__) ||
+       defined(__powerpc64__) ||
+       defined(__POWERPC__) ||
+       defined(__ppc__) ||
+       defined(__PPC__) ||
+       defined(_ARCH_PPC)
+    )
     //POWERPC
 #elif (defined(__PPC64__) || defined(__ppc64__) || defined(_ARCH_PPC64))
     //POWERPC64
