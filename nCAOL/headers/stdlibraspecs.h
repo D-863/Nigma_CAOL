@@ -1,7 +1,7 @@
 #ifndef NIGMA_CAOL_STDLIBRASPECS_H
 #define NIGMA_CAOL_STDLIBRASPECS_H
 
-#include "osspecifics.h"
+#include "compilics.h"
 
 /*Standard Library-Specific identifications:
 Bionic:
@@ -43,8 +43,8 @@ z/OS libc:
     #error "nCAOL: Apologizes, but while this C standard library is supported, it has yet to be fully implemented."
     #define CAOL_STDLIBRASPECS_DEF_LIB_ID CAOL_STDLIBRASPECS_DEF_LIBID_Bionic
     #define CAOL_STDLIBRASPECS_DEF_LIB_NAME CAOL_STDLIBRASPECS_DEF_LIBNAME_Bionic
-#elif ((defined(__GNU_LIBRARY__) || defined(__GNU_LIBRARY_MINOR__)) || \
-       (defined(__GLIBC__)       || defined(__GLIBC_MINOR__)) \
+#elif ((defined(__GNU_LIBRARY__) && defined(__GNU_LIBRARY_MINOR__)) || \
+       (defined(__GLIBC__)       && defined(__GLIBC_MINOR__)) \
     )
     #define CAOL_STDLIBRASPECS_DEF_LIB_ID CAOL_STDLIBRASPECS_DEF_LIBID_glibc
     #define CAOL_STDLIBRASPECS_DEF_LIB_NAME CAOL_STDLIBRASPECS_DEF_LIBNAME_glibc

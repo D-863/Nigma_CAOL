@@ -1,7 +1,7 @@
 #ifndef NIGMA_CAOL_OSSPECIFICS_H
 #define NIGMA_CAOL_OSSPECIFICS_H
 
-#include "compilics.h"
+#include "stdlibraspecs.h"
 
 /*OS-Specific identifications:
 AIX:
@@ -399,158 +399,13 @@ z/OS:
 #define CAOL_OSSPECIFICS_DEF_OSID_WindU_Environment                     62
 #define CAOL_OSSPECIFICS_DEF_OSID_zOS                                   63
 
-#if (defined(_AIX) || defined(__TOS_AIX__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_AIX
-#elif defined(__ANDROID__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Android
-#elif defined(UTS)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Amdahl_UTS
-#elif (defined(AMIGA) || defined(__amigaos__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_AmigaOS
-#elif defined(aegis)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Apollo_AEGIS
-#elif defined(apollo)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Apollo_DomainOS
-#elif defined(__BEOS__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_BeOS
-#elif (defined(__bg__) || defined(__THW_BLUEGENE__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Blue_Gene
-#elif (defined(__FreeBSD__)   || \
-       defined(__NetBSD__)    || \
-       defined(__OpenBSD__)   || \
-       defined(__bsdi__)      || \
-       defined(__DragonFly__) || \
-       defined(_SYSTYPE_BSD)     \
-    )
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_BSD_Environment
-#elif defined(__bsdi__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_BSDOS
-#elif defined(__convex__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_ConvexOS
-#elif defined(__CYGWIN__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Cygwin_Environment
-#elif (defined(DGUX) || defined(__DGUX__) || defined(__dgux__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_DG_UX
-#elif defined(__DragonFly__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_DragonFly
-#elif (defined(_SEQUENT_) || defined(sequent))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_DYNIX_ptx
-#elif defined(__ECOS)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_eCos
-#elif defined(__EMX__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_EMX_Environment
-#elif (defined(__FreeBSD__) || defined(__FreeBSD_kernel__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_FreeBSD
-#elif (defined(__GNU__) || defined(__gnu_hurd__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_GNU_Hurd
-#elif defined(__FreeBSD_kernel__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_GNU_kFreeBSD
-#elif defined(__gnu_linux__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_GNU_Linux
-#elif defined(__hiuxmpp)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_HIUX_MPP
-#elif (defined(_hpux) || defined(hpux) || defined(__hpux))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_HPUX
-#elif defined(__OS400__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_IBM_OS400
-#elif defined(__INTEGRITY)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_INTEGRITY
-#elif defined(__INTERIX)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Interix_Environment
-#elif (defined(sgiv) || defined(__sgi))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_IRIX
-#elif defined(__linux__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Linux_kernel
-#elif defined(__Lynx__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_LynxOS
-#elif (defined(macintosh) || defined(Macintosh) || (defined(__APPLE__) && defined(__MACH__)))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_MacOS
-#elif (defined(__OS9000) || defined(_OSK))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Microware_OS9
-#elif defined(__minix)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_MINIX
-#elif defined(__MORPHOS__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_MorphOS
-#elif (defined(mpeix) || defined(__mpexl))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_MPE_iX
-#elif (defined(MSDOS)     || \
-       defined(__MSDOS__) || \
-       defined(_MSDOS)    || \
-       defined(__DOS__)      \
-    )
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_MSDOS
-#elif defined(__NetBSD__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_NetBSD
-#elif defined(__TANDEM)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_NonStop
-#elif defined(__nucleus__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_NucleusRTOS
-#elif defined(__OpenBSD__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_OpenBSD
-#elif (defined(OS2)      || \
-       defined(_OS2)     || \
-       defined(__OS2__)  || \
-       defined(__TOS_OS2__) \
-    )
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_OS2
-#elif defined(__palmos__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_PalmOS
-#elif defined(EPLAN9)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Plan9
-#elif defined(pyr)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Pyramid_DCOSx
-#elif (defined(__QNX__) || defined(__QNXNTO__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_QNX
-#elif defined(sinux)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Reliant_UNIX
-#elif (defined(_SCO_DS) || defined(M_I386) || defined(M_XENIX))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_SCO_OpenServer
-#elif (defined(sun) || defined(__sun))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Solaris
-#elif defined(__VOS__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Stratus_VOS
-#elif (defined(__sysv__)   || \
-       defined(__SVR4)     || \
-       defined(__svr4__)   || \
-       defined(_SYSTYPE_SVR4) \
-    )
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_SVR4_Environment
-#elif defined(__SYLLABLE__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Syllable
-#elif defined(__SYMBIAN32__)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_SymbianOS
-#elif (defined(__osf__) || defined(__osf))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Tru64_OSF1
-#elif (defined(ultrix) || defined(__ultrix) || defined(__ultrix__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Ultrix
-#elif defined(_UNICOS)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_UNICOS
-#elif (defined(_CRAY) || defined(__crayx1))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_UNICOS_mp
-#elif (defined(__unix__) || defined(__unix))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_UNIX_Environment
-#elif (defined(sco) || defined(_UNIXWARE7))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_UnixWare
-#elif defined(_UWIN)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_UWin_Environment
-#elif (defined(VMS) || defined(__VMS))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_VMS
-#elif (defined(__VXWORKS__) || defined(__vxworks))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_VxWorks
-#elif (defined(_WIN16)      || \
-       defined(_WIN32)      || \
-       defined(_WIN64)      || \
-       defined(__WIN32__)   || \
-       defined(__TOS_WIN__) || \
-       defined(__WINDOWS__)    \
-    )
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Windows
-#elif defined(_WIN32_WCE)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_Windows_CE
-#elif defined(_WINDU_SOURCE)
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_WindU_Environment
-#elif (defined(__MVS__) || defined(__HOS_MVS__) || defined(__TOS_MVS__))
-    #define CAOL_OSSPECIFICS_DEF_OS_ID CAOL_OSSPECIFICS_DEF_OSID_zOS
+#if (caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, Clang))
+#elif (caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, GCC))
+#elif (caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, MinGW))
+    #if (caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, MinGW32))
+    #elif (caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, MinGWw64_32B))
+    #elif (caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, MinGWw64_64B))
+    #endif
 #endif
 
 #endif
