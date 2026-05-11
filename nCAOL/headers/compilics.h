@@ -43,6 +43,9 @@ Generic:
     GCC:
         __GNUC__
 
+    Microsoft Visual C++:
+        _MSC_VER
+
     MinGW:
         MinGW32:
         (
@@ -83,24 +86,39 @@ Generic:
 #define CAOL_COMPILIFICS_DEF_COMPSUB_RiscV   2
 #define CAOL_COMPILIFICS_DEF_COMPSUB_Generic 3
 
-#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium      0
-#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL        1
-#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_ARMCompiler 2
-#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_Clang       3
-#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_GCC         4
-#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_MinGW       5
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium             0
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL               1
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_ARMCompiler        2
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_Clang              3
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_GCC                4
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_MicrosoftVisualCPP 5
+#define CAOL_COMPILIFICS_DEF_COMPDOMAIN_MinGW              6
 
-#define CAOL_COMPILIFICS_DEF_COMPID_MicroBlazeC  0
-#define CAOL_COMPILIFICS_DEF_COMPID_CtoHardware  1
-#define CAOL_COMPILIFICS_DEF_COMPID_CARM         2
-#define CAOL_COMPILIFICS_DEF_COMPID_C166         3
-#define CAOL_COMPILIFICS_DEF_COMPID_C51          4
-#define CAOL_COMPILIFICS_DEF_COMPID_ARMCompiler  5
-#define CAOL_COMPILIFICS_DEF_COMPID_Clang        6
-#define CAOL_COMPILIFICS_DEF_COMPID_GCC          7
-#define CAOL_COMPILIFICS_DEF_COMPID_MinGW32      8
-#define CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_32B 9
-#define CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_64B 10
+#define CAOL_COMPILIFICS_DEF_COMPID_MicroBlazeC        0
+#define CAOL_COMPILIFICS_DEF_COMPID_CtoHardware        1
+#define CAOL_COMPILIFICS_DEF_COMPID_CARM               2
+#define CAOL_COMPILIFICS_DEF_COMPID_C166               3
+#define CAOL_COMPILIFICS_DEF_COMPID_C51                4
+#define CAOL_COMPILIFICS_DEF_COMPID_ARMCompiler        5
+#define CAOL_COMPILIFICS_DEF_COMPID_Clang              6
+#define CAOL_COMPILIFICS_DEF_COMPID_GCC                7
+#define CAOL_COMPILIFICS_DEF_COMPID_MicrosoftVisualCPP 8
+#define CAOL_COMPILIFICS_DEF_COMPID_MinGW32            9
+#define CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_32B       10
+#define CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_64B       11
+
+#define CAOL_COMPILIFICS_DEF_COMPNAME_MicroBlazeC        "Altium MicroBlaze C"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_CtoHardware        "Altium C-to-Hardware"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_CARM               "KEIL CARM"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_C166               "KEIL C166"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_C51                "KEIL C51"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_ARMCompiler        "ARM Compiler"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_Clang              "Clang"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_GCC                "GCC"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_MicrosoftVisualCPP "Microsoft Visual C++"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_MinGW32            "MinGW32"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_MinGWw64_32B       "MinGW-w64 32B"
+#define CAOL_COMPILIFICS_DEF_COMPNAME_MinGWw64_64B       "MinGW-w64 64B"
 
 #if defined(__CMB__)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
@@ -117,6 +135,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_FPGA
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_MicroBlazeC
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_MicroBlazeC
 #elif defined(__CHC__)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //Altium C-to-Hardware
@@ -132,6 +151,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_FPGA
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_Altium
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_CtoHardware
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_CtoHardware
 #elif (defined(__CA__) || defined(__KEIL__))
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL CARM
@@ -143,6 +163,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_CARM
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_CARM
 #elif defined(__C166__)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL C166
@@ -154,6 +175,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_C166
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_C166
 #elif (defined(__C51__) || defined(__CX51__))
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL C51
@@ -165,6 +187,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_KEIL
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_C51
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_C51
 #elif defined(__CC_ARM)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //ARM Compiler
@@ -178,6 +201,7 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_ARM
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_ARMCompiler
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_ARMCompiler
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_ARMCompiler
 #elif defined(__clang__)
     //Clang
     /*
@@ -195,7 +219,13 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_Generic
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_Clang
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_Clang
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_Clang
 
+    //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
+    //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+    #include <limits.h>
+
+    
     #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
         #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
     #else
@@ -308,6 +338,124 @@ Generic:
     #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_Generic
     #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_GCC
     #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_GCC
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_GCC
+
+    //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
+    //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+    #include <limits.h>
+
+
+    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+
+    #define CAOL_COMPILIFICS_DEF_EXTENSION_NAMESPACE gnu
+    #define CAOL_COMPILIFICS_DEF_EXTENSION_WRAP_START __attribute__((
+    #define CAOL_COMPILIFICS_DEF_EXTENSION_WRAP_STOP ))
+
+    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_deprecated(msg) deprecated(msg)
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_fallthrough     fallthrough
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_nodiscard       warn_unused_result
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_maybe_unused    unused
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_noreturn        noreturn
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_unsequenced     unsequenced
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_reproducible    reproducible
+    #else
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_deprecated(msg) deprecated(msg)
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_fallthrough     fallthrough
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_nodiscard       nodiscard
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_maybe_unused    maybe_unused
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_noreturn        noreturn
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_unsequenced     unsequenced
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_reproducible    reproducible
+    #endif
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_alias(target)                                   alias(target)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_aligned(alignment)                              aligned(alignment)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_alloc_align(position)                           alloc_align(position)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_alloc_size(...)                                 alloc_size(__VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_always_inline                                   always_inline
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_artificial                                      artificial
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_assume_aligned(...)                             assume_aligned(__VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_btf_decl_tag(str)                               btf_decl_tag(str)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_btf_type_tag(arg)                               btf_type_tag(arg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_cleanup(func)                                   cleanup(func)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_cold                                            cold
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_hot                                             hot
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_common                                          common
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nocommon                                        nocommon
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_const                                           const
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_constructor(priority)                           constructor(priority)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_destructor(priority)                            destructor(priority)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_counted_by(count)                               counted_by(count)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_error(msg)                                      error(msg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_warning(msg)                                    warning(msg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_fallthrough                                     fallthrough
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_flag_enum                                       flag_enum
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_flatten                                         flatten
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_format(archetype, string_index, first_to_check) format(archetype, string_index, first_to_check)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_format_arg(string_index)                        format_arg(string_index)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_gnu_inline                                      gnu_inline
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_ifunc(resolver)                                 ifunc(resolver)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_interrupt                                       interrupt
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_leaf                                            leaf
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_malloc(...)                                     malloc __VA_ARGS__
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_may_alias                                       may_alias
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_mode(mode)                                      mode(mode)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_musttail                                        musttail
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_naked                                           naked
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_profile_instrument_function                  no_profile_instrument_function
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_sanitize(option)                             no_sanitize(option)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_sanitize_address                             no_sanitize_address
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_address_safety_analysis                      no_address_safety_analysis
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_sanitize_thread                              no_sanitize_thread
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_split_stack                                  no_split_stack
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_stack_protector                              no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_stack_protector                              no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_noinline                                        noinline
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nonnull(...)                                    nonnull __VA_ARGS__
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nonstring                                       nonstring
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nothrow                                         nothrow
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_optimize                                        optimize
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_packed                                          packed
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_patchable_function_entry                        patchable_function_entry
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_pure                                            pure
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_retain                                          retain
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_returns_nonnull                                 returns_nonnull
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_returns_twice                                   returns_twice
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_section(section)                                section(section)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_sentinel(position)                              sentinel(position)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_target(...)                                     target(__VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_target_version(option)                          target_version(option)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_target_clones(options)                          target_clones(options)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_tls_model(tls_model)                            tls_model(tls_model)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_transparent_union                               transparent_union
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_unavailable(msg)                                unavailable(msg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_uninitialized                                   uninitialized
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_used                                            used
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_vector_size(bytes)                              vector_size(bytes)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_visibility(visibility_type)                     visibility(visibility_type)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_weak                                            weak
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_weakref(target)                                 weakref(target)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
+#elif defined(_MSC_VER)
+    //Microsoft Visual C++:
+    #define CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPSUB_Generic
+    #define CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPDOMAIN_MicrosoftVisualCPP
+    #define CAOL_COMPILIFICS_DEF_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPID_MicrosoftVisualCPP
+    #define CAOL_COMPILIFICS_DEF_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPNAME_MicrosoftVisualCPP
+
+    //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
+    //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+    #include <limits.h>
+
 
     #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
         #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
@@ -417,15 +565,124 @@ Generic:
     #if (defined(__MINGW64_VERSION_MAJOR) || defined(__MINGW64_VERSION_MINOR))
         #if defined(__MINGW64__)
             //MinGW-w64_64B
-            #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_64B
+            #define CAOL_COMPILIFICS_DEF_COMPILER_ID   CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_64B
+            #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_MinGWw64_64B
         #else
             //MinGW-w64_32B
-            #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_32B
+            #define CAOL_COMPILIFICS_DEF_COMPILER_ID   CAOL_COMPILIFICS_DEF_COMPID_MinGWw64_32B
+            #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_MinGWw64_32B
         #endif
     #else
         //MinGW32
-        #define CAOL_COMPILIFICS_DEF_COMPILER_ID CAOL_COMPILIFICS_DEF_COMPID_MinGW32
+        #define CAOL_COMPILIFICS_DEF_COMPILER_ID   CAOL_COMPILIFICS_DEF_COMPID_MinGW32
+        #define CAOL_COMPILIFICS_DEF_COMPILER_NAME CAOL_COMPILIFICS_DEF_COMPNAME_MinGW32
     #endif
+
+    //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
+    //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+    #include <limits.h>
+
+
+    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define CAOL_COMPILIFICS_DEF_CURRENT_FUNC __func__
+    #endif
+    #define CAOL_COMPILIFICS_DEF_CURRENT_FILE __FILE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_LINE __LINE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_DATE __DATE__
+    #define CAOL_COMPILIFICS_DEF_CURRENT_TIME __TIME__
+
+
+    #define CAOL_COMPILIFICS_DEF_EXTENSION_NAMESPACE gnu
+    #define CAOL_COMPILIFICS_DEF_EXTENSION_WRAP_START __attribute__((
+    #define CAOL_COMPILIFICS_DEF_EXTENSION_WRAP_STOP ))
+
+    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_deprecated(msg) deprecated(msg)
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_fallthrough     fallthrough
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_nodiscard       warn_unused_result
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_maybe_unused    unused
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_noreturn        noreturn
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_unsequenced     unsequenced
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_reproducible    reproducible
+    #else
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_deprecated(msg) deprecated(msg)
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_fallthrough     fallthrough
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_nodiscard       nodiscard
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_maybe_unused    maybe_unused
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_noreturn        noreturn
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_unsequenced     unsequenced
+        #define CAOL_COMPILIFICS_DEF_EXTNAME_reproducible    reproducible
+    #endif
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_alias(target)                                   alias(target)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_aligned(alignment)                              aligned(alignment)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_alloc_align(position)                           alloc_align(position)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_alloc_size(...)                                 alloc_size(__VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_always_inline                                   always_inline
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_artificial                                      artificial
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_assume_aligned(...)                             assume_aligned(__VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_btf_decl_tag(str)                               btf_decl_tag(str)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_btf_type_tag(arg)                               btf_type_tag(arg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_cleanup(func)                                   cleanup(func)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_cold                                            cold
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_hot                                             hot
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_common                                          common
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nocommon                                        nocommon
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_const                                           const
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_constructor(priority)                           constructor(priority)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_destructor(priority)                            destructor(priority)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_counted_by(count)                               counted_by(count)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_error(msg)                                      error(msg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_warning(msg)                                    warning(msg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_fallthrough                                     fallthrough
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_flag_enum                                       flag_enum
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_flatten                                         flatten
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_format(archetype, string_index, first_to_check) format(archetype, string_index, first_to_check)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_format_arg(string_index)                        format_arg(string_index)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_gnu_inline                                      gnu_inline
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_ifunc(resolver)                                 ifunc(resolver)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_interrupt                                       interrupt
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_leaf                                            leaf
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_malloc(...)                                     malloc __VA_ARGS__
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_may_alias                                       may_alias
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_mode(mode)                                      mode(mode)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_musttail                                        musttail
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_naked                                           naked
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_profile_instrument_function                  no_profile_instrument_function
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_sanitize(option)                             no_sanitize(option)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_sanitize_address                             no_sanitize_address
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_address_safety_analysis                      no_address_safety_analysis
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_sanitize_thread                              no_sanitize_thread
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_split_stack                                  no_split_stack
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_stack_protector                              no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_no_stack_protector                              no_stack_protector
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_noinline                                        noinline
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nonnull(...)                                    nonnull __VA_ARGS__
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nonstring                                       nonstring
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_nothrow                                         nothrow
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_optimize                                        optimize
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_packed                                          packed
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_patchable_function_entry                        patchable_function_entry
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_pure                                            pure
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_retain                                          retain
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_returns_nonnull                                 returns_nonnull
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_returns_twice                                   returns_twice
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_section(section)                                section(section)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_sentinel(position)                              sentinel(position)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_target(...)                                     target(__VA_ARGS__)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_target_version(option)                          target_version(option)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_target_clones(options)                          target_clones(options)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_tls_model(tls_model)                            tls_model(tls_model)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_transparent_union                               transparent_union
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_unavailable(msg)                                unavailable(msg)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_uninitialized                                   uninitialized
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_used                                            used
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_vector_size(bytes)                              vector_size(bytes)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_visibility(visibility_type)                     visibility(visibility_type)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_weak                                            weak
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_weakref(target)                                 weakref(target)
+    #define CAOL_COMPILIFICS_DEF_EXTNAME_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #else
     #error "nCAOL: Apologizes, but it seems like the utilized compiler is unsupported! - But please do feel free to send a request, if you have the spare time."
 #endif
@@ -472,6 +729,7 @@ Generic:
 #define CAOL_COMPILIFICS_INTER_CURRENT_COMPILER(t) CAOL_COMPILIFICS_INTER_CURRENT_COMPILER_##t
 #define CAOL_COMPILIFICS_INTER_CURRENT_COMPILER_SUBJECT CAOL_COMPILIFICS_DEF_COMPILER_SUBJECT
 #define CAOL_COMPILIFICS_INTER_CURRENT_COMPILER_DOMAIN  CAOL_COMPILIFICS_DEF_COMPILER_DOMAIN
+#define CAOL_COMPILIFICS_INTER_CURRENT_COMPILER_NAME    CAOL_COMPILIFICS_DEF_COMPILER_NAME
 #define CAOL_COMPILIFICS_INTER_CURRENT_COMPILER_ID      CAOL_COMPILIFICS_DEF_COMPILER_ID
 
 #define CAOL_COMPILIFICS_INTER_CURRENT_FUNC() CAOL_COMPILIFICS_DEF_CURRENT_FUNC
