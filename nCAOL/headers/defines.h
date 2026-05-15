@@ -1,6 +1,6 @@
 #ifndef NIGMA_CAOL_DEFINES_H
 #define NIGMA_CAOL_DEFINES_H
 
-#include "osspecifics.h"
+#include "specifics/OS.h"
 
 #endif

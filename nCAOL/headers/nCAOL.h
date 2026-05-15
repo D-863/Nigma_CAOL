@@ -3,6 +3,7 @@
 
 #include "utilities.h"
 
+/*
 //Set's the specified area <pBuff> -> <size> bytes to zero.
 extern void caolOPZEROArea(void *pBuff, caolSAddr size);
 //Set's the specified area <pBuff> -> <size> bytes to <value>.
@@ -28,5 +29,6 @@ extern void caolOPCONVNumToStr_64B(void *pBuff, caolU64 value);
 extern void caolOPSWPEndian_16B(caolU16 *pValue);
 extern void caolOPSWPEndian_32B(caolU32 *pValue);
 extern void caolOPSWPEndian_64B(caolU64 *pValue);
+*/
 
 #endif

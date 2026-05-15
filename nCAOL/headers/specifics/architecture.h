@@ -1,7 +1,8 @@
-#ifndef NIGMA_CAOL_ARCHISPECS_H
-#define NIGMA_CAOL_ARCHISPECS_H
+#ifndef NIGMA_CAOL_SPECIFICS_ARCHITECTURE_H
+#define NIGMA_CAOL_SPECIFICS_ARCHITECTURE_H
 
-#include "stdlibraspecs.h"
+#include "cstdlibrary.h"
+#include "values/architecture.h"
 
 /*Architecture-Specific identifications:
 RISC:
@@ -179,30 +180,9 @@ CISC:
         Systems/C:
             __SYSC_ZARCH__
 */
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC 0
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_EPIC 1
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC 2
-
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Alpha             0
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM               1
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM_Thumb         2
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM64             3
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Blackfin          4
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_MIPS              5
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_PowerPC           6
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_RS6000            7
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SPARC             8
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SuperH            9
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_IntelItanium_IA64 10
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_x86_64            11
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86         12
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86_16Bit   13
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Motorola68k       14
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SystemZ           15
-
 RISC:
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Alpha
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_Alpha
         GNU C:
             __alpha__
         DEC C:
@@ -210,8 +190,8 @@ RISC:
         Visual Studio:
             _M_ALPHA
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_ARM
         GNU C:
             __arm__
         RealView:
@@ -225,8 +205,8 @@ RISC:
         Diab:
         __arm
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM_Thumb
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_ARM_Thumb
         GNU C:
             __thumb__
         RealView:
@@ -236,19 +216,19 @@ RISC:
         Visual Studio
             _M_ARMT
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_ARM64
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_ARM64
         GNU C:
             __aarch64__
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Blackfin
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_Blackfin
         GNU C:
             __bfin
             __BFIN__
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_MIPS
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_MIPS
         GNU C:
             __mips__
             mips
@@ -258,8 +238,8 @@ RISC:
         Metrowerks:
             __MIPS__
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_PowerPC
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_PowerPC
         GNU C:
             __powerpc
             __powerpc__
@@ -279,8 +259,8 @@ RISC:
         Diab:
             __ppc
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_RS6000
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_RS6000
         XL C/C++:
             __THW_RS6000
             _IBMR2
@@ -290,21 +270,21 @@ RISC:
             _ARCH_PWR3
             _ARCH_PWR4
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SPARC
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_SPARC
         GNU C:
             __sparc__
         Sun Studio:
             __sparc
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_RISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SuperH
+#define NCAOL_SPECS_ARCH_VAL_CLASS_RISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_SuperH
         GNU C:
             __sh__
 
 EPIC:
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_EPIC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_IntelItanium_IA64
+#define NCAOL_SPECS_ARCH_VAL_CLASS_EPIC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_IntelItanium_IA64
         GNU C:
             __ia64__
             _IA64
@@ -318,8 +298,8 @@ EPIC:
             __itanium__
 
 CISC:
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_x86_64:
+#define NCAOL_SPECS_ARCH_VAL_CLASS_CISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_x86_64:
         AMD64:
             GNU C:
                 __amd64__
@@ -335,8 +315,8 @@ CISC:
                 _M_X64
                 _M_AMD64
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86
+#define NCAOL_SPECS_ARCH_VAL_CLASS_CISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_Intel_x86
         GNU C:
             i386
             __i386
@@ -362,15 +342,15 @@ CISC:
         Diab:
             __386
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Intel_x86_16Bit
+#define NCAOL_SPECS_ARCH_VAL_CLASS_CISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_Intel_x86_16Bit
         Visual Studio:
             _M_I86
         Digital Mars:
             _M_I86
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_Motorola68k
+#define NCAOL_SPECS_ARCH_VAL_CLASS_CISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_Motorola68k
         GNU C:
             __m68k__
         SAS/C:
@@ -378,8 +358,8 @@ CISC:
         Stratus VOS C:
             __MC68K__
 
-#define CAOL_ARCHISPECS_DEF_ARCHCLASS_CISC
-#define CAOL_ARCHISPECS_DEF_ARCHTYPE_SystemZ
+#define NCAOL_SPECS_ARCH_VAL_CLASS_CISC
+#define NCAOL_SPECS_ARCH_VAL_TYPE_SystemZ
         XL C/C++:
             __370__
             __THW_370__

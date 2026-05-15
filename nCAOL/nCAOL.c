@@ -1,5 +1,6 @@
-#include "headers/CAOL.h"
+#include "headers/nCAOL.h"
 
+/*
 void caolOPZEROArea(void *pBuff, caolSAddr size) {
 }
 
@@ -44,3 +45,4 @@ void caolOPSWPEndian_32B(caolU32 *pValue) {
 
 void caolOPSWPEndian_64B(caolU64 *pValue) {
 }
+*/
