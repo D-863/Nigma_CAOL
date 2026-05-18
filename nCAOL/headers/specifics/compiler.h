@@ -189,7 +189,7 @@ Generic:
     #include <limits.h>
 
     
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C99))
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __FUNCTION__
     #else
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __func__
@@ -204,7 +204,7 @@ Generic:
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       warn_unused_result
@@ -311,7 +311,7 @@ Generic:
     #include <limits.h>
 
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C99))
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __FUNCTION__
     #else
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __func__
@@ -326,7 +326,7 @@ Generic:
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       warn_unused_result
@@ -445,7 +445,7 @@ Generic:
     #include <limits.h>
 
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C99))
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __FUNCTION__
     #else
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __func__
@@ -460,7 +460,7 @@ Generic:
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       warn_unused_result
@@ -590,7 +590,7 @@ Generic:
     #include <limits.h>
 
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C99))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C99))
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __FUNCTION__
     #else
         #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __func__
@@ -605,7 +605,7 @@ Generic:
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
 
-    #if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       warn_unused_result
@@ -694,14 +694,14 @@ Generic:
     #error "nCAOL: Apologizes, but it seems like the utilized compiler is unsupported! - But please do feel free to send a request, if you have the spare time."
 #endif
 
-#if (caolStandilics(CURRENT, STD, ID) < caolStandilics(STD, ID, C23))
+#if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_FUNC(extName) NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START extName NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP
 #else
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_FUNC(extName) [[NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE::extName]]
 #endif
 
 
-#define caolCompilifics(t, ...) NCAOL_SPECS_COMP_INTER_##t(__VA_ARGS__)
+#define caolSpecsComp(t, ...) NCAOL_SPECS_COMP_INTER_##t(__VA_ARGS__)
 #define NCAOL_SPECS_COMP_INTER_COMPILER(t, ...) NCAOL_SPECS_COMP_INTER_COMPILER_##t(__VA_ARGS__)
 #define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT(t) NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_##t
 #define NCAOL_SPECS_COMP_INTER_COMPILER_DOMAIN(t)  NCAOL_SPECS_COMP_INTER_COMPILER_DOMAIN_##t

@@ -47,8 +47,8 @@ WINDOWS:
         #define NCAOL_ENABLES_EXPLICIT_CSTDLIB_TYPE NCAOL_SPECS_CSTDLIB_VAL_ID_uClibc
     #elif (defined(__LIBREL__) || defined(__TARGET_LIB__))
         #define NCAOL_ENABLES_EXPLICIT_CSTDLIB_TYPE NCAOL_SPECS_CSTDLIB_VAL_ID_zOSlib
-    #elif ((caolCompilifics(CURRENT, COMPILER, ID) == caolCompilifics(COMPILER, ID, MicrosoftVisualCPP)) || \
-           (caolCompilifics(CURRENT, COMPILER, DOMAIN) == caolCompilifics(COMPILER, DOMAIN, MinGW))         \
+    #elif ((caolSpecsComp(CURRENT, COMPILER, ID) == caolSpecsComp(COMPILER, ID, MicrosoftVisualCPP)) || \
+           (caolSpecsComp(CURRENT, COMPILER, DOMAIN) == caolSpecsComp(COMPILER, DOMAIN, MinGW))         \
         )
         #define NCAOL_ENABLES_EXPLICIT_CSTDLIB_TYPE NCAOL_SPECS_CSTDLIB_VAL_ID_WINDOWS
     #else
@@ -68,7 +68,7 @@ WINDOWS:
     #define NCAOL_SPECS_CSTDLIB_DEF_LIB_NAME NCAOL_SPECS_CSTDLIB_VAL_NAME_glibc
 
     //System-specific C standard headers.
-    #if (caolStandilics(STD, ID, C90) <= caolStandilics(CURRENT, STD, ID))
+    #if (caolSpecsCSTD(STD, ID, C90) <= caolSpecsCSTD(CURRENT, STD, ID))
         #include <assert.h>
         #include <signal.h>
         #include <stdlib.h>
@@ -84,12 +84,12 @@ WINDOWS:
         #include <setjmp.h>
         #include <stdio.h>
     #endif
-    #if (caolStandilics(STD, ID, C95) <= caolStandilics(CURRENT, STD, ID))
+    #if (caolSpecsCSTD(STD, ID, C95) <= caolSpecsCSTD(CURRENT, STD, ID))
         #include <iso646.h>
         #include <wchar.h>
         #include <wctype.h>
     #endif
-    #if (caolStandilics(STD, ID, C99) <= caolStandilics(CURRENT, STD, ID))
+    #if (caolSpecsCSTD(STD, ID, C99) <= caolSpecsCSTD(CURRENT, STD, ID))
         #include <complex.h>
         #include <inttypes.h>
         #include <stdint.h>
@@ -97,14 +97,14 @@ WINDOWS:
         #include <fenv.h>
         #include <stdbool.h>
     #endif
-    #if (caolStandilics(STD, ID, C11) <= caolStandilics(CURRENT, STD, ID))
+    #if (caolSpecsCSTD(STD, ID, C11) <= caolSpecsCSTD(CURRENT, STD, ID))
         #include <stdalign.h>
         #include <stdatomic.h>
         #include <stdnoreturn.h>
         #include <threads.h>
         #include <uchar.h>
     #endif
-    #if (caolStandilics(STD, ID, C23) <= caolStandilics(CURRENT, STD, ID))
+    #if (caolSpecsCSTD(STD, ID, C23) <= caolSpecsCSTD(CURRENT, STD, ID))
         #include <stdbit.h>
         #include <stdckdint.h>
     #endif
@@ -131,7 +131,7 @@ WINDOWS:
     #error "nCAOL: Apologizes, but it seems like the utilized C standard library is unsupported! - But please do feel free to send a request, if you have the spare time."
 #endif
 
-#define caolSTDLibraspecs(t, ...) NCAOL_SPECS_CSTDLIB_INTER_##t(__VA_ARGS__)
+#define caolSpecsCSTDLIB(t, ...) NCAOL_SPECS_CSTDLIB_INTER_##t(__VA_ARGS__)
 #define NCAOL_SPECS_CSTDLIB_INTER_LIB(t, ...) NCAOL_SPECS_CSTDLIB_INTER_LIB_##t(__VA_ARGS__)
 #define NCAOL_SPECS_CSTDLIB_INTER_LIB_NAME(t) NCAOL_SPECS_CSTDLIB_INTER_LIB_NAME_##t
 #define NCAOL_SPECS_CSTDLIB_INTER_LIB_ID(t) NCAOL_SPECS_CSTDLIB_INTER_LIB_ID_##t

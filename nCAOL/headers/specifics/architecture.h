@@ -1,7 +1,7 @@
 #ifndef NIGMA_CAOL_SPECIFICS_ARCHITECTURE_H
 #define NIGMA_CAOL_SPECIFICS_ARCHITECTURE_H
 
-#include "cstdlibrary.h"
+#include "OS.h"
 #include "values/architecture.h"
 
 /*Architecture-Specific identifications:

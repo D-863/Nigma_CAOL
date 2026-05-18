@@ -51,7 +51,7 @@ C23:
     #endif
 #endif
 
-#define caolStandilics(t, ...) NCAOL_SPECS_CSTD_INTER_##t(__VA_ARGS__)
+#define caolSpecsCSTD(t, ...) NCAOL_SPECS_CSTD_INTER_##t(__VA_ARGS__)
 #define NCAOL_SPECS_CSTD_INTER_STD(t, ...) NCAOL_SPECS_CSTD_INTER_STD_##t(__VA_ARGS__)
 #define NCAOL_SPECS_CSTD_INTER_STD_NAME(t) NCAOL_SPECS_CSTD_INTER_STD_NAME_##t
 #define NCAOL_SPECS_CSTD_INTER_STD_ID(t)   NCAOL_SPECS_CSTD_INTER_STD_ID_##t

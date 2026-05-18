@@ -360,8 +360,8 @@ Other:
 
 
 //CSTDLIB specific identifications:
-#if (caolSTDLibraspecs(CURRENT, LIB, ID) == caolSTDLibraspecs(LIB, ID, Bionic))
-#elif (caolSTDLibraspecs(CURRENT, LIB, ID) == caolSTDLibraspecs(LIB, ID, glibc))
+#if (caolSpecsCSTDLIB(CURRENT, LIB, ID) == caolSpecsCSTDLIB(LIB, ID, Bionic))
+#elif (caolSpecsCSTDLIB(CURRENT, LIB, ID) == caolSpecsCSTDLIB(LIB, ID, glibc))
     #if (defined(M_I386) || defined(M_XENIX))
         #if (defined(__unix__) || defined(__unix))
             #define NCAOL_SPECS_OS_DEF_OS_SUBJECT NCAOL_SPECS_OS_VAL_SUB_Unix
@@ -397,10 +397,10 @@ Other:
         #define NCAOL_SPECS_OS_DEF_OS_NAME    NCAOL_SPECS_OS_VAL_NAME_VxWorks
         #define NCAOL_SPECS_OS_DEF_OS_ID      NCAOL_SPECS_OS_VAL_ID_VxWorks
     #endif
-#elif (caolSTDLibraspecs(CURRENT, LIB, ID) == caolSTDLibraspecs(LIB, ID, klibc))
-#elif (caolSTDLibraspecs(CURRENT, LIB, ID) == caolSTDLibraspecs(LIB, ID, uClibc))
-#elif (caolSTDLibraspecs(CURRENT, LIB, ID) == caolSTDLibraspecs(LIB, ID, zOSlib))
-#elif (caolSTDLibraspecs(CURRENT, LIB, ID) == caolSTDLibraspecs(LIB, ID, WINDOWS))
+#elif (caolSpecsCSTDLIB(CURRENT, LIB, ID) == caolSpecsCSTDLIB(LIB, ID, klibc))
+#elif (caolSpecsCSTDLIB(CURRENT, LIB, ID) == caolSpecsCSTDLIB(LIB, ID, uClibc))
+#elif (caolSpecsCSTDLIB(CURRENT, LIB, ID) == caolSpecsCSTDLIB(LIB, ID, zOSlib))
+#elif (caolSpecsCSTDLIB(CURRENT, LIB, ID) == caolSpecsCSTDLIB(LIB, ID, WINDOWS))
 #endif
 
 
@@ -817,7 +817,7 @@ Other:
 #endif
 
 
-#define caolOSSpecifics(t, ...) NCAOL_SPECS_OS_INTER_##t(__VA_ARGS__)
+#define caolSpecsOS(t, ...) NCAOL_SPECS_OS_INTER_##t(__VA_ARGS__)
 #define NCAOL_SPECS_OS_INTER_OS(t, ...) NCAOL_SPECS_OS_INTER_OS_##t(__VA_ARGS__)
 #define NCAOL_SPECS_OS_INTER_OS_SUBJECT(t) NCAOL_SPECS_OS_INTER_OS_SUBJECT_##t
 #define NCAOL_SPECS_OS_INTER_OS_DOMAIN(t)  NCAOL_SPECS_OS_INTER_OS_DOMAIN_##t
