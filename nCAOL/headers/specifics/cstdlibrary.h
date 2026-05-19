@@ -1,6 +1,7 @@
 #ifndef NIGMA_CAOL_SPECIFICS_CSTDLIBRARY_H
 #define NIGMA_CAOL_SPECIFICS_CSTDLIBRARY_H
 
+
 #include "compiler.h"
 #include "values/cstdlibrary.h"
 
@@ -68,7 +69,9 @@ WINDOWS:
     #define NCAOL_SPECS_CSTDLIB_DEF_LIB_NAME NCAOL_SPECS_CSTDLIB_VAL_NAME_glibc
 
     //System-specific C standard headers.
-    #if (caolSpecsCSTD(STD, ID, C90) <= caolSpecsCSTD(CURRENT, STD, ID))
+    #if ((caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C89)) || \
+         (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C90))    \
+        )
         #include <assert.h>
         #include <signal.h>
         #include <stdlib.h>
@@ -83,28 +86,121 @@ WINDOWS:
         #include <float.h>
         #include <setjmp.h>
         #include <stdio.h>
-    #endif
-    #if (caolSpecsCSTD(STD, ID, C95) <= caolSpecsCSTD(CURRENT, STD, ID))
+    #elif ((caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C94)) || \
+           (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C95))    \
+        )
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
         #include <iso646.h>
         #include <wchar.h>
         #include <wctype.h>
-    #endif
-    #if (caolSpecsCSTD(STD, ID, C99) <= caolSpecsCSTD(CURRENT, STD, ID))
+    #elif (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C99))
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+
         #include <complex.h>
         #include <inttypes.h>
         #include <stdint.h>
         #include <tgmath.h>
         #include <fenv.h>
         #include <stdbool.h>
-    #endif
-    #if (caolSpecsCSTD(STD, ID, C11) <= caolSpecsCSTD(CURRENT, STD, ID))
+    #elif ((caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C11)) || \
+           (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C17)) || \
+           (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C18))    \
+        )
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+
+        #include <complex.h>
+        #include <inttypes.h>
+        #include <stdint.h>
+        #include <tgmath.h>
+        #include <fenv.h>
+        #include <stdbool.h>
+
         #include <stdalign.h>
         #include <stdatomic.h>
         #include <stdnoreturn.h>
         #include <threads.h>
         #include <uchar.h>
-    #endif
-    #if (caolSpecsCSTD(STD, ID, C23) <= caolSpecsCSTD(CURRENT, STD, ID))
+    #elif (caolSpecsCSTD(CURRENT, STD, ID) <= caolSpecsCSTD(STD, ID, C23))
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+
+        #include <complex.h>
+        #include <inttypes.h>
+        #include <stdint.h>
+        #include <tgmath.h>
+        #include <fenv.h>
+        #include <stdbool.h>
+
+        #include <stdalign.h>
+        #include <stdatomic.h>
+        #include <stdnoreturn.h>
+        #include <threads.h>
+        #include <uchar.h>
+
         #include <stdbit.h>
         #include <stdckdint.h>
     #endif
@@ -126,7 +222,143 @@ WINDOWS:
 #elif (NCAOL_ENABLES_EXPLICIT_CSTDLIB_TYPE == NCAOL_SPECS_CSTDLIB_VAL_ID_WINDOWS)
     #define NCAOL_SPECS_CSTDLIB_DEF_LIB_ID NCAOL_SPECS_CSTDLIB_VAL_ID_WINDOWS
     #define NCAOL_SPECS_CSTDLIB_DEF_LIB_NAME NCAOL_SPECS_CSTDLIB_VAL_NAME_WINDOWS
-    #include <sys/types.h>
+
+    //System-specific C standard headers.
+    #if ((caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C89)) || \
+         (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C90))    \
+        )
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+    #elif ((caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C94)) || \
+           (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C95))    \
+        )
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+    #elif (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C99))
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+
+        #include <complex.h>
+        #include <inttypes.h>
+        #include <stdint.h>
+        #include <tgmath.h>
+        #include <fenv.h>
+        #include <stdbool.h>
+    #elif ((caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C11)) || \
+           (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C17)) || \
+           (caolSpecsCSTD(CURRENT, STD, ID) == caolSpecsCSTD(STD, ID, C18))    \
+        )
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+
+        #include <complex.h>
+        #include <inttypes.h>
+        #include <stdint.h>
+        #include <tgmath.h>
+        #include <fenv.h>
+        #include <stdbool.h>
+
+        #include <stdalign.h>
+        #include <stdatomic.h>
+        #include <stdnoreturn.h>
+        //#include <threads.h>
+        #include <uchar.h>
+    #elif (caolSpecsCSTD(CURRENT, STD, ID) <= caolSpecsCSTD(STD, ID, C23))
+        #include <assert.h>
+        #include <signal.h>
+        #include <stdlib.h>
+        #include <ctype.h>
+        #include <locale.h>
+        #include <stdarg.h>
+        #include <string.h>
+        #include <errno.h>
+        #include <math.h>
+        #include <stddef.h>
+        #include <time.h>
+        #include <float.h>
+        #include <setjmp.h>
+        #include <stdio.h>
+
+        #include <iso646.h>
+        #include <wchar.h>
+        #include <wctype.h>
+
+        #include <complex.h>
+        #include <inttypes.h>
+        #include <stdint.h>
+        #include <tgmath.h>
+        #include <fenv.h>
+        #include <stdbool.h>
+
+        #include <stdalign.h>
+        #include <stdatomic.h>
+        #include <stdnoreturn.h>
+        //#include <threads.h>
+        #include <uchar.h>
+
+        #include <stdbit.h>
+        #include <stdckdint.h>
+    #endif
 #else
     #error "nCAOL: Apologizes, but it seems like the utilized C standard library is unsupported! - But please do feel free to send a request, if you have the spare time."
 #endif
@@ -155,5 +387,6 @@ WINDOWS:
 #define NCAOL_SPECS_CSTDLIB_INTER_CURRENT_LIB(t) NCAOL_SPECS_CSTDLIB_INTER_CURRENT_LIB_##t
 #define NCAOL_SPECS_CSTDLIB_INTER_CURRENT_LIB_NAME NCAOL_SPECS_CSTDLIB_DEF_LIB_NAME
 #define NCAOL_SPECS_CSTDLIB_INTER_CURRENT_LIB_ID   NCAOL_SPECS_CSTDLIB_DEF_LIB_ID
+
 
 #endif

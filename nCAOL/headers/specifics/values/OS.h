@@ -1,11 +1,12 @@
 #ifndef NIGMA_CAOL_SPECIFICS_VALUES_OS_H
 #define NIGMA_CAOL_SPECIFICS_VALUES_OS_H
 
-#define NCAOL_SPECS_OS_VAL_SUB_PDP7      0
-#define NCAOL_SPECS_OS_VAL_SUB_UnixLike  1
-#define NCAOL_SPECS_OS_VAL_SUB_Unix      2
-#define NCAOL_SPECS_OS_VAL_SUB_DOS       3
-#define NCAOL_SPECS_OS_VAL_SUB_Other     4
+
+#define NCAOL_SPECS_OS_VAL_SUBJECT_PDP7      0
+#define NCAOL_SPECS_OS_VAL_SUBJECT_UnixLike  1
+#define NCAOL_SPECS_OS_VAL_SUBJECT_Unix      2
+#define NCAOL_SPECS_OS_VAL_SUBJECT_DOS       3
+#define NCAOL_SPECS_OS_VAL_SUBJECT_Other     4
 
 #define NCAOL_SPECS_OS_VAL_DOMAIN_PWBUnix    0
 #define NCAOL_SPECS_OS_VAL_DOMAIN_BSD        1
@@ -32,7 +33,7 @@
 #define NCAOL_SPECS_OS_VAL_ID_BeOS                6
 #define NCAOL_SPECS_OS_VAL_ID_BlueGene            7
 #define NCAOL_SPECS_OS_VAL_ID_BSD_Environment     8
-#define NCAOL_SPECS_OS_VAL_ID_BSD_OS               9
+#define NCAOL_SPECS_OS_VAL_ID_BSD_OS              9
 #define NCAOL_SPECS_OS_VAL_ID_ConvexOS            10
 #define NCAOL_SPECS_OS_VAL_ID_Cygwin_Environment  11
 #define NCAOL_SPECS_OS_VAL_ID_DG_UX               12
@@ -154,5 +155,6 @@
 #define NCAOL_SPECS_OS_VAL_NAME_Windows_CE          "Windows CE"
 #define NCAOL_SPECS_OS_VAL_NAME_WindU_Environment   "Wind/U Environment"
 #define NCAOL_SPECS_OS_VAL_NAME_zOS                 "z/OS"
+
 
 #endif

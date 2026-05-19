@@ -1,7 +1,9 @@
 #ifndef NIGMA_CAOL_H
 #define NIGMA_CAOL_H
 
+
 #include "utilities.h"
+
 
 /*
 //Set's the specified area <pBuff> -> <size> bytes to zero.
@@ -30,5 +32,6 @@ extern void caolOPSWPEndian_16B(caolU16 *pValue);
 extern void caolOPSWPEndian_32B(caolU32 *pValue);
 extern void caolOPSWPEndian_64B(caolU64 *pValue);
 */
+
 
 #endif

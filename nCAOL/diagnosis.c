@@ -1,5 +1,6 @@
 #include "headers/diagnosis.h"
 
+
 uint8_t caolCheckstrs(char *sA, char *sB) {
     register uint8_t a = 0;
     register uint8_t r = 0;

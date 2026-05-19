@@ -1,6 +1,7 @@
 #ifndef NIGMA_CAOL_SPECIFICS_COMPILER_H
 #define NIGMA_CAOL_SPECIFICS_COMPILER_H
 
+
 #include "cstandard.h"
 #include "values/compiler.h"
 
@@ -38,15 +39,7 @@ RISC-V_Specific:
     - Sincerly, Nigma -
 
 Generic:
-    Clang:
-        __clang__
-
-    GCC:
-        __GNUC__
-
-    Microsoft Visual C++:
-        _MSC_VER
-
+    //MinGW needs to be checked first, because it's more of a port than a actual standalone compiler.
     MinGW:
         MinGW32:
         (
@@ -81,6 +74,16 @@ Generic:
                 __MINGW64_VERSION_MINOR
             )
         )
+
+    Clang:
+        __clang__
+
+    GCC:
+        __GNUC__
+
+    Microsoft Visual C++:
+        _MSC_VER
+
 */
 #if defined(__CMB__)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
@@ -94,10 +97,10 @@ Generic:
         __BUILD__ = VRRRPPP
             VRRRPPP: Build number
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_FPGA
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_FPGA
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_Altium
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_MicroBlazeC
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_MicroBlazeC
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_MicroBlazeC
 #elif defined(__CHC__)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //Altium C-to-Hardware
@@ -110,10 +113,10 @@ Generic:
         __BUILD__ = VRRRPPP
             VRRRPPP: Build number
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_FPGA
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_FPGA
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_Altium
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_CtoHardware
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_CtoHardware
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_CtoHardware
 #elif (defined(__CA__) || defined(__KEIL__))
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL CARM
@@ -122,10 +125,10 @@ Generic:
         V: Version
         RR: Revision
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_ARM
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_ARM
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_KEIL
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_CARM
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_CARM
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_CARM
 #elif defined(__C166__)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL C166
@@ -134,10 +137,10 @@ Generic:
         V: Version
         RR: Revision
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_ARM
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_ARM
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_KEIL
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_C166
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_C166
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_C166
 #elif (defined(__C51__) || defined(__CX51__))
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //KEIL C51
@@ -146,10 +149,10 @@ Generic:
         V: Version
         RR: Revision
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_ARM
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_ARM
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_KEIL
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_C51
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_C51
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_C51
 #elif defined(__CC_ARM)
     #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     //ARM Compiler
@@ -160,10 +163,160 @@ Generic:
             P: Patch
             BBB: Build
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_ARM
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_ARM
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_ARMCompiler
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_ARMCompiler
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_ARMCompiler
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_ARMCompiler
+#elif (defined(__MINGW32__) || defined(__MINGW32_MAJOR_VERSION) || defined(__MINGW32_MINOR_VERSION))
+    //MinGW
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_Generic
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_MinGW
+
+    #if (defined(__MINGW64_VERSION_MAJOR) || defined(__MINGW64_VERSION_MINOR))
+        //MinGW-w64
+        /*
+            __MINGW32_MAJOR_VERSION = V
+                V: Version for MinGW32.
+            __MINGW32_MINOR_VERSION = R
+                R: Revision for MinGW32.
+
+            __MINGW64_VERSION_MAJOR = V
+                V: Version for MinGW-w64.
+            __MINGW64_VERSION_MINOR = R
+                R: Revision for MinGW-w64.
+        */
+        #if defined(__MINGW64__)
+            //MinGW-w64_64B
+            #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME NCAOL_SPECS_COMP_VAL_NAME_MinGWw64_64B
+            #define NCAOL_SPECS_COMP_DEF_COMPILER_ID   NCAOL_SPECS_COMP_VAL_ID_MinGWw64_64B
+        #else
+            //MinGW-w64_32B
+            #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME NCAOL_SPECS_COMP_VAL_NAME_MinGWw64_32B
+            #define NCAOL_SPECS_COMP_DEF_COMPILER_ID   NCAOL_SPECS_COMP_VAL_ID_MinGWw64_32B
+        #endif
+    #else
+        //MinGW32
+        /*
+            __MINGW32_MAJOR_VERSION = V
+                V: Version for MinGW32.
+            __MINGW32_MINOR_VERSION = R
+                R: Revision for MinGW32.
+        */
+        #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME NCAOL_SPECS_COMP_VAL_NAME_MinGW32
+        #define NCAOL_SPECS_COMP_DEF_COMPILER_ID   NCAOL_SPECS_COMP_VAL_ID_MinGW32
+    #endif
+
+
+    //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
+    //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+    #include <limits.h>
+
+
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C99))
+        #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __FUNCTION__
+    #else
+        #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __func__
+    #endif
+    #define NCAOL_SPECS_COMP_DEF_CURRENT_FILE __FILE__
+    #define NCAOL_SPECS_COMP_DEF_CURRENT_LINE __LINE__
+    #define NCAOL_SPECS_COMP_DEF_CURRENT_DATE __DATE__
+    #define NCAOL_SPECS_COMP_DEF_CURRENT_TIME __TIME__
+
+
+#if defined(__clang__)
+    #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE clang
+#else
+    //either '__GNUC__' is defined or we simply default to it.
+    #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE gnu
+#endif
+    #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
+    #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
+
+    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       warn_unused_result
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_maybe_unused    unused
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_noreturn        noreturn
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_unsequenced     unsequenced
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_reproducible    reproducible
+    #else
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       nodiscard
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_maybe_unused    maybe_unused
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_noreturn        noreturn
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_unsequenced     unsequenced
+        #define NCAOL_SPECS_COMP_DEF_EXTNAME_reproducible    reproducible
+    #endif
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_alias(target)                                   alias(target)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_aligned(alignment)                              aligned(alignment)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_alloc_align(position)                           alloc_align(position)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_alloc_size(...)                                 alloc_size(__VA_ARGS__)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_always_inline                                   always_inline
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_artificial                                      artificial
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_assume_aligned(...)                             assume_aligned(__VA_ARGS__)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_btf_decl_tag(str)                               btf_decl_tag(str)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_btf_type_tag(arg)                               btf_type_tag(arg)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_cleanup(func)                                   cleanup(func)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_cold                                            cold
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_hot                                             hot
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_common                                          common
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nocommon                                        nocommon
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_const                                           const
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_constructor(priority)                           constructor(priority)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_destructor(priority)                            destructor(priority)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_counted_by(count)                               counted_by(count)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_error(msg)                                      error(msg)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_warning(msg)                                    warning(msg)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough                                     fallthrough
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_flag_enum                                       flag_enum
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_flatten                                         flatten
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_format(archetype, string_index, first_to_check) format(archetype, string_index, first_to_check)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_format_arg(string_index)                        format_arg(string_index)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_gnu_inline                                      gnu_inline
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_ifunc(resolver)                                 ifunc(resolver)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_interrupt                                       interrupt
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_leaf                                            leaf
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_malloc(...)                                     malloc __VA_ARGS__
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_may_alias                                       may_alias
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_mode(mode)                                      mode(mode)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_musttail                                        musttail
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_naked                                           naked
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_profile_instrument_function                  no_profile_instrument_function
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_sanitize(option)                             no_sanitize(option)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_sanitize_address                             no_sanitize_address
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_address_safety_analysis                      no_address_safety_analysis
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_sanitize_thread                              no_sanitize_thread
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_split_stack                                  no_split_stack
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_stack_protector                              no_stack_protector
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_stack_protector                              no_stack_protector
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_noinline                                        noinline
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nonnull(...)                                    nonnull __VA_ARGS__
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nonstring                                       nonstring
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nothrow                                         nothrow
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_optimize                                        optimize
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_packed                                          packed
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_patchable_function_entry                        patchable_function_entry
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_pure                                            pure
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_retain                                          retain
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_returns_nonnull                                 returns_nonnull
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_returns_twice                                   returns_twice
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_section(section)                                section(section)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_sentinel(position)                              sentinel(position)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_target(...)                                     target(__VA_ARGS__)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_target_version(option)                          target_version(option)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_target_clones(options)                          target_clones(options)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_tls_model(tls_model)                            tls_model(tls_model)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_transparent_union                               transparent_union
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_unavailable(msg)                                unavailable(msg)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_uninitialized                                   uninitialized
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_used                                            used
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_vector_size(bytes)                              vector_size(bytes)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_visibility(visibility_type)                     visibility(visibility_type)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_weak                                            weak
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_weakref(target)                                 weakref(target)
+    #define NCAOL_SPECS_COMP_DEF_EXTNAME_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
 #elif defined(__clang__)
     //Clang
     /*
@@ -178,7 +331,7 @@ Generic:
             R: Minor version
             P: Patch level
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_Generic
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_Generic
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_Clang
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_Clang
     #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_Clang
@@ -300,7 +453,7 @@ Generic:
         __GNUC_PATCHLEVEL__ = P
             P: Patch
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_Generic
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_Generic
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_GCC
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_GCC
     #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_GCC
@@ -434,155 +587,10 @@ Generic:
         _MSC_BUILD = B
             B: Build number
     */
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_Generic
+    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUBJECT_Generic
     #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_MicrosoftVisualCPP
     #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME    NCAOL_SPECS_COMP_VAL_NAME_MicrosoftVisualCPP
     #define NCAOL_SPECS_COMP_DEF_COMPILER_ID      NCAOL_SPECS_COMP_VAL_ID_MicrosoftVisualCPP
-
-
-    //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
-    //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
-    #include <limits.h>
-
-
-    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C99))
-        #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __FUNCTION__
-    #else
-        #define NCAOL_SPECS_COMP_DEF_CURRENT_FUNC __func__
-    #endif
-    #define NCAOL_SPECS_COMP_DEF_CURRENT_FILE __FILE__
-    #define NCAOL_SPECS_COMP_DEF_CURRENT_LINE __LINE__
-    #define NCAOL_SPECS_COMP_DEF_CURRENT_DATE __DATE__
-    #define NCAOL_SPECS_COMP_DEF_CURRENT_TIME __TIME__
-
-
-    #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE gnu
-    #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
-    #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
-
-    #if (caolSpecsCSTD(CURRENT, STD, ID) < caolSpecsCSTD(STD, ID, C23))
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       warn_unused_result
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_maybe_unused    unused
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_noreturn        noreturn
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_unsequenced     unsequenced
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_reproducible    reproducible
-    #else
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_deprecated(msg) deprecated(msg)
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough     fallthrough
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_nodiscard       nodiscard
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_maybe_unused    maybe_unused
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_noreturn        noreturn
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_unsequenced     unsequenced
-        #define NCAOL_SPECS_COMP_DEF_EXTNAME_reproducible    reproducible
-    #endif
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_alias(target)                                   alias(target)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_aligned(alignment)                              aligned(alignment)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_alloc_align(position)                           alloc_align(position)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_alloc_size(...)                                 alloc_size(__VA_ARGS__)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_always_inline                                   always_inline
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_artificial                                      artificial
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_assume_aligned(...)                             assume_aligned(__VA_ARGS__)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_btf_decl_tag(str)                               btf_decl_tag(str)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_btf_type_tag(arg)                               btf_type_tag(arg)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_cleanup(func)                                   cleanup(func)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_cold                                            cold
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_hot                                             hot
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_common                                          common
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nocommon                                        nocommon
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_const                                           const
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_constructor(priority)                           constructor(priority)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_destructor(priority)                            destructor(priority)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_counted_by(count)                               counted_by(count)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_error(msg)                                      error(msg)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_warning(msg)                                    warning(msg)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_fallthrough                                     fallthrough
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_flag_enum                                       flag_enum
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_flatten                                         flatten
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_format(archetype, string_index, first_to_check) format(archetype, string_index, first_to_check)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_format_arg(string_index)                        format_arg(string_index)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_gnu_inline                                      gnu_inline
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_ifunc(resolver)                                 ifunc(resolver)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_interrupt                                       interrupt
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_leaf                                            leaf
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_malloc(...)                                     malloc __VA_ARGS__
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_may_alias                                       may_alias
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_mode(mode)                                      mode(mode)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_musttail                                        musttail
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_naked                                           naked
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_profile_instrument_function                  no_profile_instrument_function
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_sanitize(option)                             no_sanitize(option)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_sanitize_address                             no_sanitize_address
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_address_safety_analysis                      no_address_safety_analysis
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_sanitize_thread                              no_sanitize_thread
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_split_stack                                  no_split_stack
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_stack_protector                              no_stack_protector
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_no_stack_protector                              no_stack_protector
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_noinline                                        noinline
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nonnull(...)                                    nonnull __VA_ARGS__
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nonstring                                       nonstring
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_nothrow                                         nothrow
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_optimize                                        optimize
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_packed                                          packed
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_patchable_function_entry                        patchable_function_entry
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_pure                                            pure
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_retain                                          retain
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_returns_nonnull                                 returns_nonnull
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_returns_twice                                   returns_twice
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_section(section)                                section(section)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_sentinel(position)                              sentinel(position)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_target(...)                                     target(__VA_ARGS__)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_target_version(option)                          target_version(option)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_target_clones(options)                          target_clones(options)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_tls_model(tls_model)                            tls_model(tls_model)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_transparent_union                               transparent_union
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_unavailable(msg)                                unavailable(msg)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_uninitialized                                   uninitialized
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_used                                            used
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_vector_size(bytes)                              vector_size(bytes)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_visibility(visibility_type)                     visibility(visibility_type)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_weak                                            weak
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_weakref(target)                                 weakref(target)
-    #define NCAOL_SPECS_COMP_DEF_EXTNAME_zero_call_used_regs(choice)                     zero_call_used_regs(choice)
-#elif (defined(__MINGW32__) || defined(__MINGW32_MAJOR_VERSION) || defined(__MINGW32_MINOR_VERSION))
-    //MinGW
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_SUBJECT NCAOL_SPECS_COMP_VAL_SUB_Generic
-    #define NCAOL_SPECS_COMP_DEF_COMPILER_DOMAIN  NCAOL_SPECS_COMP_VAL_DOMAIN_MinGW
-
-    #if (defined(__MINGW64_VERSION_MAJOR) || defined(__MINGW64_VERSION_MINOR))
-        //MinGW-w64
-        /*
-            __MINGW32_MAJOR_VERSION = V
-                V: Version for MinGW32.
-            __MINGW32_MINOR_VERSION = R
-                R: Revision for MinGW32.
-
-            __MINGW64_VERSION_MAJOR = V
-                V: Version for MinGW-w64.
-            __MINGW64_VERSION_MINOR = R
-                R: Revision for MinGW-w64.
-        */
-        #if defined(__MINGW64__)
-            //MinGW-w64_64B
-            #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME NCAOL_SPECS_COMP_VAL_NAME_MinGWw64_64B
-            #define NCAOL_SPECS_COMP_DEF_COMPILER_ID   NCAOL_SPECS_COMP_VAL_ID_MinGWw64_64B
-        #else
-            //MinGW-w64_32B
-            #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME NCAOL_SPECS_COMP_VAL_NAME_MinGWw64_32B
-            #define NCAOL_SPECS_COMP_DEF_COMPILER_ID   NCAOL_SPECS_COMP_VAL_ID_MinGWw64_32B
-        #endif
-    #else
-        //MinGW32
-        /*
-            __MINGW32_MAJOR_VERSION = V
-                V: Version for MinGW32.
-            __MINGW32_MINOR_VERSION = R
-                R: Revision for MinGW32.
-        */
-        #define NCAOL_SPECS_COMP_DEF_COMPILER_NAME NCAOL_SPECS_COMP_VAL_NAME_MinGW32
-        #define NCAOL_SPECS_COMP_DEF_COMPILER_ID   NCAOL_SPECS_COMP_VAL_ID_MinGW32
-    #endif
 
 
     //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
@@ -708,10 +716,10 @@ Generic:
 #define NCAOL_SPECS_COMP_INTER_COMPILER_NAME(t)    NCAOL_SPECS_COMP_INTER_COMPILER_NAME_##t
 #define NCAOL_SPECS_COMP_INTER_COMPILER_ID(t)      NCAOL_SPECS_COMP_INTER_COMPILER_ID_##t
 
-#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_FPGA    NCAOL_SPECS_COMP_VAL_SUB_FPGA
-#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_ARM     NCAOL_SPECS_COMP_VAL_SUB_ARM
-#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_RiscV   NCAOL_SPECS_COMP_VAL_SUB_RiscV
-#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_Generic NCAOL_SPECS_COMP_VAL_SUB_Generic
+#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_FPGA    NCAOL_SPECS_COMP_VAL_SUBJECT_FPGA
+#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_ARM     NCAOL_SPECS_COMP_VAL_SUBJECT_ARM
+#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_RiscV   NCAOL_SPECS_COMP_VAL_SUBJECT_RiscV
+#define NCAOL_SPECS_COMP_INTER_COMPILER_SUBJECT_Generic NCAOL_SPECS_COMP_VAL_SUBJECT_Generic
 
 #define NCAOL_SPECS_COMP_INTER_COMPILER_DOMAIN_Altium             NCAOL_SPECS_COMP_VAL_DOMAIN_Altium
 #define NCAOL_SPECS_COMP_INTER_COMPILER_DOMAIN_KEIL               NCAOL_SPECS_COMP_VAL_DOMAIN_KEIL
@@ -843,5 +851,8 @@ Generic:
 #define NCAOL_SPECS_COMP_INTER_EXTENSION_NAME_weak                                            NCAOL_SPECS_COMP_DEF_EXTNAME_weak
 #define NCAOL_SPECS_COMP_INTER_EXTENSION_NAME_weakref(target)                                 NCAOL_SPECS_COMP_DEF_EXTNAME_weakref(target)
 #define NCAOL_SPECS_COMP_INTER_EXTENSION_NAME_zero_call_used_regs(choice)                     NCAOL_SPECS_COMP_DEF_EXTNAME_zero_call_used_regs(choice)
+
+//SOMEBODY thought it would be a Good Idea, to create a define inside 'stdnoreturn.h' that turns the 'noreturn' keyword into '_Noreturn' *UNCONDITIONALLY*.. Keyword: UNCONDITIONALLY.
+#define NCAOL_SPECS_COMP_INTER_EXTENSION_NAME__Noreturn NCAOL_SPECS_COMP_INTER_EXTENSION_NAME_noreturn
 
 #endif

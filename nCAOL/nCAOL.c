@@ -1,5 +1,6 @@
 #include "headers/nCAOL.h"
 
+
 /*
 void caolOPZEROArea(void *pBuff, caolSAddr size) {
 }

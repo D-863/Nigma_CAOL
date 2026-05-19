@@ -1,6 +1,7 @@
 #ifndef NIGMA_CAOL_UTILITIES_H
 #define NIGMA_CAOL_UTILITIES_H
 
+
 #if defined(NCAOL_ENABLES_PATH)
     #include NCAOL_ENABLES_PATH
 #else
@@ -12,5 +13,6 @@
 #else
     #include "defines.h"
 #endif
+
 
 #endif
