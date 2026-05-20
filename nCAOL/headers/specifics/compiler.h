@@ -223,12 +223,12 @@ Generic:
     #define NCAOL_SPECS_COMP_DEF_CURRENT_TIME __TIME__
 
 
-#if defined(__clang__)
-    #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE clang
-#else
-    //either '__GNUC__' is defined or we simply default to it.
-    #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE gnu
-#endif
+    #if defined(__clang__)
+        #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE clang
+    #else
+        //either '__GNUC__' is defined or we simply default to it.
+        #define NCAOL_SPECS_COMP_DEF_EXTENSION_NAMESPACE gnu
+    #endif
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_START __attribute__((
     #define NCAOL_SPECS_COMP_DEF_EXTENSION_WRAP_STOP ))
 
@@ -322,11 +322,11 @@ Generic:
     /*
         __clang_major__ = V
             V: Major version
-        __clang_major__ = R
+        __clang_minor__ = R
             R: Minor version
-        __clang_major__ = P
+        __clang_patchlevel__ = P
             P: Patch level
-        __clang_major__ = V.R.P
+        __clang_version__ = V.R.P (tags/RELEASE_VRP/final)
             V: Major version
             R: Minor version
             P: Patch level
