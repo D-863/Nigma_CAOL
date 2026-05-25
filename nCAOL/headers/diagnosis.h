@@ -6,184 +6,181 @@
 
 extern uint8_t caolCheckstrs(char *sA, char *sB);
 
-#define CAOL_DIAGNOSIS_DEF_FSTR(y) #y
-#define CAOL_DIAGNOSIS_DEF_STR(x) CAOL_DIAGNOSIS_DEF_FSTR(x)
+#define NCAOL_DIAGNOSIS_DEF_FSTR(y) #y
+#define NCAOL_DIAGNOSIS_DEF_STR(x) NCAOL_DIAGNOSIS_DEF_FSTR(x)
 
 
 #define caolDiagnosis() \
     printf("Architecture<%s> {\n\tClass<%u>,\n\tID<%u>\n}\n",                                                     \
-        caolSpecsArch(CURRENT, ARCH, NAME),                                                                       \
-        caolSpecsArch(CURRENT, ARCH, CLASS),                                                                      \
-        caolSpecsArch(CURRENT, ARCH, ID)                                                                          \
+        caolSpecsArch(NCAOL_CURRENT_ARCH_NAME),                                                                   \
+        caolSpecsArch(NCAOL_CURRENT_ARCH_CLASS),                                                                  \
+        caolSpecsArch(NCAOL_CURRENT_ARCH_ID)                                                                      \
     );                                                                                                            \
     printf("C-Standard<%s> {\n\tID<%u>\n}\n",                                                                     \
-        caolSpecsCSTD(CURRENT, STD, NAME),                                                                        \
-        caolSpecsCSTD(CURRENT, STD, ID)                                                                           \
+        caolSpecsCSTD(NCAOL_CURRENT_STD_NAME),                                                                    \
+        caolSpecsCSTD(NCAOL_CURRENT_STD_ID)                                                                       \
     );                                                                                                            \
     printf("OS<%s> {\n\tSubject<%u>,\n\tDomain<%u>,\n\tID<%u>\n}\n",                                              \
-        caolSpecsOS(CURRENT, OS, NAME),                                                                           \
-        caolSpecsOS(CURRENT, OS, SUBJECT),                                                                        \
-        caolSpecsOS(CURRENT, OS, DOMAIN),                                                                         \
-        caolSpecsOS(CURRENT, OS, ID)                                                                              \
+        caolSpecsOS(NCAOL_CURRENT_OS_NAME),                                                                       \
+        caolSpecsOS(NCAOL_CURRENT_OS_SUBJECT),                                                                    \
+        caolSpecsOS(NCAOL_CURRENT_OS_DOMAIN),                                                                     \
+        caolSpecsOS(NCAOL_CURRENT_OS_ID)                                                                          \
     );                                                                                                            \
     printf("C-STDLIB<%s> {\n\tID<%u>\n}\n",                                                                       \
-        caolSpecsCSTDLIB(CURRENT, LIB, NAME),                                                                     \
-        caolSpecsCSTDLIB(CURRENT, LIB, ID)                                                                        \
+        caolSpecsCSTDLIB(NCAOL_CURRENT_LIB_NAME),                                                                 \
+        caolSpecsCSTDLIB(NCAOL_CURRENT_LIB_ID)                                                                    \
     );                                                                                                            \
     printf("Compiler<%s> {\n\tSubject<%u>,\n\tDomain<%u>,\n\tID<%u>,\n\tExtensions(THAT ARE NOT SUPPORTED): {\n", \
-        caolSpecsComp(CURRENT, COMPILER, NAME),                                                                   \
-        caolSpecsComp(CURRENT, COMPILER, SUBJECT),                                                                \
-        caolSpecsComp(CURRENT, COMPILER, DOMAIN),                                                                 \
-        caolSpecsComp(CURRENT, COMPILER, ID)                                                                      \
+        caolSpecsComp(NCAOL_CURRENT_COMPILER_NAME),                                                               \
+        caolSpecsComp(NCAOL_CURRENT_COMPILER_SUBJECT),                                                            \
+        caolSpecsComp(NCAOL_CURRENT_COMPILER_DOMAIN),                                                             \
+        caolSpecsComp(NCAOL_CURRENT_COMPILER_ID)                                                                  \
     );                                                                                                            \
-    if (0x00 != caolCheckstrs("alias(target)",                                   CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, alias(target)                                  )))) { puts("\t\talias");                          } \
-    if (0x00 != caolCheckstrs("aligned(alignment)",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, aligned(alignment)                             )))) { puts("\t\taligned");                        } \
-    if (0x00 != caolCheckstrs("alloc_align(position)",                           CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, alloc_align(position)                          )))) { puts("\t\talloc_align");                    } \
-    if (0x00 != caolCheckstrs("alloc_size(...)",                                 CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, alloc_size(...)                                )))) { puts("\t\talloc_size");                     } \
-    if (0x00 != caolCheckstrs("always_inline static inline ...",                 CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, always_inline(...)                             )))) { puts("\t\talways_inline");                  } \
-    if (0x00 != caolCheckstrs("artificial",                                      CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, artificial                                     )))) { puts("\t\tartificial");                     } \
-    if (0x00 != caolCheckstrs("assume_aligned(...)",                             CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, assume_aligned(...)                            )))) { puts("\t\tassume_aligned");                 } \
-    if (0x00 != caolCheckstrs("btf_decl_tag(str)",                               CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, btf_decl_tag(str)                              )))) { puts("\t\tbtf_decl_tag");                   } \
-    if (0x00 != caolCheckstrs("btf_type_tag(arg)",                               CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, btf_type_tag(arg)                              )))) { puts("\t\tbtf_type_tag");                   } \
-    if (0x00 != caolCheckstrs("cleanup(func)",                                   CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, cleanup(func)                                  )))) { puts("\t\tcleanup");                        } \
-    if (0x00 != caolCheckstrs("cold",                                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, cold                                           )))) { puts("\t\tcold");                           } \
-    if (0x00 != caolCheckstrs("hot",                                             CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, hot                                            )))) { puts("\t\thot");                            } \
-    if (0x00 != caolCheckstrs("common",                                          CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, common                                         )))) { puts("\t\tcommon");                         } \
-    if (0x00 != caolCheckstrs("nocommon",                                        CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nocommon                                       )))) { puts("\t\tnocommon");                       } \
-    if (0x00 != caolCheckstrs("const",                                           CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, const                                          )))) { puts("\t\tconst");                          } \
-    if (0x00 != caolCheckstrs("constructor(priority)",                           CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, constructor(priority)                          )))) { puts("\t\tconstructor");                    } \
-    if (0x00 != caolCheckstrs("destructor(priority)",                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, destructor(priority)                           )))) { puts("\t\tdestructor");                     } \
-    if (0x00 != caolCheckstrs("counted_by(count)",                               CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, counted_by(count)                              )))) { puts("\t\tcounted_by");                     } \
-    if (0x00 != caolCheckstrs("deprecated(msg)",                                 CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, deprecated(msg)                                )))) { puts("\t\tdeprecated");                     } \
-    if (0x00 != caolCheckstrs("error(msg)",                                      CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, error(msg)                                     )))) { puts("\t\terror");                          } \
-    if (0x00 != caolCheckstrs("warning(msg)",                                    CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, warning(msg)                                   )))) { puts("\t\twarning");                        } \
-    if (0x00 != caolCheckstrs("flag_enum",                                       CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, flag_enum                                      )))) { puts("\t\tflag_enum");                      } \
-    if (0x00 != caolCheckstrs("flatten",                                         CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, flatten                                        )))) { puts("\t\tflatten");                        } \
-    if (0x00 != caolCheckstrs("format(archetype, string_index, first_to_check)", CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, format(archetype, string_index, first_to_check))))) { puts("\t\tformat");                         } \
-    if (0x00 != caolCheckstrs("format_arg(string_index)",                        CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, format_arg(string_index)                       )))) { puts("\t\tformat_arg");                     } \
-    if (0x00 != caolCheckstrs("gnu_inline",                                      CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, gnu_inline                                     )))) { puts("\t\tgnu_inline");                     } \
-    if (0x00 != caolCheckstrs("ifunc(resolver)",                                 CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, ifunc(resolver)                                )))) { puts("\t\tifunc");                          } \
-    if (0x00 != caolCheckstrs("interrupt",                                       CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, interrupt                                      )))) { puts("\t\tinterrupt");                      } \
-    if (0x00 != caolCheckstrs("leaf",                                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, leaf                                           )))) { puts("\t\tleaf");                           } \
-    if (0x00 != caolCheckstrs("malloc ...",                                      CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, malloc(...)                                    )))) { puts("\t\tmalloc");                         } \
-    if (0x00 != caolCheckstrs("may_alias",                                       CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, may_alias                                      )))) { puts("\t\tmay_alias");                      } \
-    if (0x00 != caolCheckstrs("mode(mode)",                                      CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, mode(mode)                                     )))) { puts("\t\tmode");                           } \
-    if (0x00 != caolCheckstrs("musttail",                                        CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, musttail                                       )))) { puts("\t\tmusttail");                       } \
-    if (0x00 != caolCheckstrs("naked",                                           CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, naked                                          )))) { puts("\t\tnaked");                          } \
-    if (0x00 != caolCheckstrs("no_profile_instrument_function",                  CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_profile_instrument_function(...)            )))) { puts("\t\tno_profile_instrument_function"); } \
-    if (0x00 != caolCheckstrs("no_sanitize(option)",                             CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_sanitize(option)                            )))) { puts("\t\tno_sanitize");                    } \
-    if (0x00 != caolCheckstrs("no_sanitize_address",                             CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_sanitize_address                            )))) { puts("\t\tno_sanitize_address");            } \
-    if (0x00 != caolCheckstrs("no_address_safety_analysis",                      CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_address_safety_analysis(...)                )))) { puts("\t\tno_address_safety_analysis");     } \
-    if (0x00 != caolCheckstrs("no_sanitize_thread",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_sanitize_thread                             )))) { puts("\t\tno_sanitize_thread");             } \
-    if (0x00 != caolCheckstrs("no_split_stack",                                  CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_split_stack                                 )))) { puts("\t\tno_split_stack");                 } \
-    if (0x00 != caolCheckstrs("no_stack_protector",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_stack_protector                             )))) { puts("\t\tno_stack_protector");             } \
-    if (0x00 != caolCheckstrs("no_stack_protector",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_stack_protector                             )))) { puts("\t\tno_stack_protector");             } \
-    if (0x00 != caolCheckstrs("noinline",                                        CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, noinline                                       )))) { puts("\t\tnoinline");                       } \
-    if (0x00 != caolCheckstrs("nonnull ...",                                     CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nonnull(...)                                   )))) { puts("\t\tnonnull");                        } \
-    if (0x00 != caolCheckstrs("nonstring",                                       CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nonstring                                      )))) { puts("\t\tnonstring");                      } \
-    if (0x00 != caolCheckstrs(CAOL_DIAGNOSIS_DEF_STR(noreturn),                  CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, noreturn                                       )))) { puts("\t\tnoreturn");                       } \
-    if (0x00 != caolCheckstrs("nothrow",                                         CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nothrow                                        )))) { puts("\t\tnothrow");                        } \
-    if (0x00 != caolCheckstrs("optimize",                                        CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, optimize                                       )))) { puts("\t\toptimize");                       } \
-    if (0x00 != caolCheckstrs("packed",                                          CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, packed                                         )))) { puts("\t\tpacked");                         } \
-    if (0x00 != caolCheckstrs("patchable_function_entry",                        CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, patchable_function_entry                       )))) { puts("\t\tpatchable_function_entry");       } \
-    if (0x00 != caolCheckstrs("pure",                                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, pure                                           )))) { puts("\t\tpure");                           } \
-    if (0x00 != caolCheckstrs("reproducible",                                    CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, reproducible                                   )))) { puts("\t\treproducible");                   } \
-    if (0x00 != caolCheckstrs("retain",                                          CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, retain                                         )))) { puts("\t\tretain");                         } \
-    if (0x00 != caolCheckstrs("returns_nonnull",                                 CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, returns_nonnull                                )))) { puts("\t\treturns_nonnull");                } \
-    if (0x00 != caolCheckstrs("returns_twice",                                   CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, returns_twice                                  )))) { puts("\t\treturns_twice");                  } \
-    if (0x00 != caolCheckstrs("section(section)",                                CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, section(section)                               )))) { puts("\t\tsection");                        } \
-    if (0x00 != caolCheckstrs("sentinel(position)",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, sentinel(position)                             )))) { puts("\t\tsentinel");                       } \
-    if (0x00 != caolCheckstrs("target(...)",                                     CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, target(...)                                    )))) { puts("\t\ttarget");                         } \
-    if (0x00 != caolCheckstrs("target_version(option)",                          CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, target_version(option)                         )))) { puts("\t\ttarget_version");                 } \
-    if (0x00 != caolCheckstrs("target_clones(options)",                          CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, target_clones(options)                         )))) { puts("\t\ttarget_clones");                  } \
-    if (0x00 != caolCheckstrs("tls_model(tls_model)",                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, tls_model(tls_model)                           )))) { puts("\t\ttls_model");                      } \
-    if (0x00 != caolCheckstrs("transparent_union",                               CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, transparent_union                              )))) { puts("\t\ttransparent_union");              } \
-    if (0x00 != caolCheckstrs("unavailable(msg)",                                CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, unavailable(msg)                               )))) { puts("\t\tunavailable");                    } \
-    if (0x00 != caolCheckstrs("uninitialized",                                   CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, uninitialized                                  )))) { puts("\t\tuninitialized");                  } \
-    if (0x00 != caolCheckstrs("unsequenced",                                     CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, unsequenced                                    )))) { puts("\t\tunsequenced");                    } \
-    if (0x00 != caolCheckstrs("unused",                                          CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, maybe_unused                                   )))) { puts("\t\tmaybe_unused");                   } \
-    if (0x00 != caolCheckstrs("used",                                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, used                                           )))) { puts("\t\tused");                           } \
-    if (0x00 != caolCheckstrs("vector_size(bytes)",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, vector_size(bytes)                             )))) { puts("\t\tvector_size");                    } \
-    if (0x00 != caolCheckstrs("visibility(visibility_type)",                     CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, visibility(visibility_type)                    )))) { puts("\t\tvisibility");                     } \
-    if (0x00 != caolCheckstrs("warn_unused_result",                              CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nodiscard                                      )))) { puts("\t\tnodiscard");                      } \
-    if (0x00 != caolCheckstrs("weak",                                            CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, weak                                           )))) { puts("\t\tweak");                           } \
-    if (0x00 != caolCheckstrs("weakref(target)",                                 CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, weakref(target)                                )))) { puts("\t\tweakref");                        } \
-    if (0x00 != caolCheckstrs("zero_call_used_regs(choice)",                     CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, zero_call_used_regs(choice)                    )))) { puts("\t\tzero_call_used_regs");            } \
+    if (0x00 != caolCheckstrs("alias(NCAOLtarget)",                         NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalias(NCAOLtarget)                         ))))) { puts("\t\talias");                          } \
+    if (0x00 != caolCheckstrs("aligned(NCAOLalignment)",                    NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLaligned(NCAOLalignment)                    ))))) { puts("\t\taligned");                        } \
+    if (0x00 != caolCheckstrs("alloc_align(NCAOLposition)",                 NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalloc_align(NCAOLposition)                 ))))) { puts("\t\talloc_align");                    } \
+    if (0x00 != caolCheckstrs("alloc_size (NCAOL_VA_ARGS)",                 NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalloc_size((NCAOL_VA_ARGS))                ))))) { puts("\t\talloc_size");                     } \
+    if (0x00 != caolCheckstrs("always_inline static inline",                NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalways_inline                              ))))) { puts("\t\talways_inline");                  } \
+    if (0x00 != caolCheckstrs("artificial",                                 NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLartificial                                 ))))) { puts("\t\tartificial");                     } \
+    if (0x00 != caolCheckstrs("assume_aligned (NCAOL_VA_ARGS)",             NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLassume_aligned((NCAOL_VA_ARGS))            ))))) { puts("\t\tassume_aligned");                 } \
+    if (0x00 != caolCheckstrs("btf_decl_tag(NCAOLstr)",                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLbtf_decl_tag(NCAOLstr)                     ))))) { puts("\t\tbtf_decl_tag");                   } \
+    if (0x00 != caolCheckstrs("btf_type_tag(NCAOLarg)",                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLbtf_type_tag(NCAOLarg)                     ))))) { puts("\t\tbtf_type_tag");                   } \
+    if (0x00 != caolCheckstrs("cleanup(NCAOLfunc)",                         NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcleanup(NCAOLfunc)                         ))))) { puts("\t\tcleanup");                        } \
+    if (0x00 != caolCheckstrs("cold",                                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcold                                       ))))) { puts("\t\tcold");                           } \
+    if (0x00 != caolCheckstrs("hot",                                        NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLhot                                        ))))) { puts("\t\thot");                            } \
+    if (0x00 != caolCheckstrs("common",                                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcommon                                     ))))) { puts("\t\tcommon");                         } \
+    if (0x00 != caolCheckstrs("nocommon",                                   NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnocommon                                   ))))) { puts("\t\tnocommon");                       } \
+    if (0x00 != caolCheckstrs("const",                                      NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLconst                                      ))))) { puts("\t\tconst");                          } \
+    if (0x00 != caolCheckstrs("constructor(NCAOLpriority)",                 NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLconstructor(NCAOLpriority)                 ))))) { puts("\t\tconstructor");                    } \
+    if (0x00 != caolCheckstrs("destructor(NCAOLpriority)",                  NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLdestructor(NCAOLpriority)                  ))))) { puts("\t\tdestructor");                     } \
+    if (0x00 != caolCheckstrs("counted_by(NCAOLcount)",                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcounted_by(NCAOLcount)                     ))))) { puts("\t\tcounted_by");                     } \
+    if (0x00 != caolCheckstrs("deprecated(NCAOLmsg)",                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLdeprecated(NCAOLmsg)                       ))))) { puts("\t\tdeprecated");                     } \
+    if (0x00 != caolCheckstrs("error(NCAOLmsg)",                            NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLerror(NCAOLmsg)                            ))))) { puts("\t\terror");                          } \
+    if (0x00 != caolCheckstrs("warning(NCAOLmsg)",                          NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLwarning(NCAOLmsg)                          ))))) { puts("\t\twarning");                        } \
+    if (0x00 != caolCheckstrs("flag_enum",                                  NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLflag_enum                                  ))))) { puts("\t\tflag_enum");                      } \
+    if (0x00 != caolCheckstrs("flatten",                                    NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLflatten                                    ))))) { puts("\t\tflatten");                        } \
+    if (0x00 != caolCheckstrs("format(NCAOLarchT, NCAOLindex, NCAOLcheck)", NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLformat(NCAOLarchT, NCAOLindex, NCAOLcheck) ))))) { puts("\t\tformat");                         } \
+    if (0x00 != caolCheckstrs("format_arg(NCAOLstring_index)",              NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLformat_arg(NCAOLstring_index)              ))))) { puts("\t\tformat_arg");                     } \
+    if (0x00 != caolCheckstrs("gnu_inline",                                 NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLgnu_inline                                 ))))) { puts("\t\tgnu_inline");                     } \
+    if (0x00 != caolCheckstrs("ifunc(NCAOLresolver)",                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLifunc(NCAOLresolver)                       ))))) { puts("\t\tifunc");                          } \
+    if (0x00 != caolCheckstrs("interrupt",                                  NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLinterrupt                                  ))))) { puts("\t\tinterrupt");                      } \
+    if (0x00 != caolCheckstrs("leaf",                                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLleaf                                       ))))) { puts("\t\tleaf");                           } \
+    if (0x00 != caolCheckstrs("malloc (NCAOL_VA_ARGS)",                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmalloc((NCAOL_VA_ARGS))                    ))))) { puts("\t\tmalloc");                         } \
+    if (0x00 != caolCheckstrs("may_alias",                                  NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmay_alias                                  ))))) { puts("\t\tmay_alias");                      } \
+    if (0x00 != caolCheckstrs("mode(NCAOLmode)",                            NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmode(NCAOLmode)                            ))))) { puts("\t\tmode");                           } \
+    if (0x00 != caolCheckstrs("musttail",                                   NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmusttail                                   ))))) { puts("\t\tmusttail");                       } \
+    if (0x00 != caolCheckstrs("naked",                                      NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnaked                                      ))))) { puts("\t\tnaked");                          } \
+    if (0x00 != caolCheckstrs("no_profile_instrument_function",             NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_profile_instrument_function             ))))) { puts("\t\tno_profile_instrument_function"); } \
+    if (0x00 != caolCheckstrs("no_sanitize(NCAOLoption)",                   NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_sanitize(NCAOLoption)                   ))))) { puts("\t\tno_sanitize");                    } \
+    if (0x00 != caolCheckstrs("no_sanitize_address",                        NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_sanitize_address                        ))))) { puts("\t\tno_sanitize_address");            } \
+    if (0x00 != caolCheckstrs("no_sanitize_thread",                         NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_sanitize_thread                         ))))) { puts("\t\tno_sanitize_thread");             } \
+    if (0x00 != caolCheckstrs("no_split_stack",                             NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_split_stack                             ))))) { puts("\t\tno_split_stack");                 } \
+    if (0x00 != caolCheckstrs("no_stack_protector",                         NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_stack_protector                         ))))) { puts("\t\tno_stack_protector");             } \
+    if (0x00 != caolCheckstrs("noinline",                                   NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnoinline                                   ))))) { puts("\t\tnoinline");                       } \
+    if (0x00 != caolCheckstrs("nonnull (NCAOL_VA_ARGS)",                    NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnonnull((NCAOL_VA_ARGS))                   ))))) { puts("\t\tnonnull");                        } \
+    if (0x00 != caolCheckstrs("nonstring",                                  NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnonstring                                  ))))) { puts("\t\tnonstring");                      } \
+    if (0x00 != caolCheckstrs(NCAOL_DIAGNOSIS_DEF_STR(noreturn),            NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnoreturn                                   ))))) { puts("\t\tnoreturn");                       } \
+    if (0x00 != caolCheckstrs("nothrow",                                    NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnothrow                                    ))))) { puts("\t\tnothrow");                        } \
+    if (0x00 != caolCheckstrs("optimize",                                   NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLoptimize                                   ))))) { puts("\t\toptimize");                       } \
+    if (0x00 != caolCheckstrs("packed",                                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLpacked                                     ))))) { puts("\t\tpacked");                         } \
+    if (0x00 != caolCheckstrs("patchable_function_entry",                   NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLpatchable_function_entry                   ))))) { puts("\t\tpatchable_function_entry");       } \
+    if (0x00 != caolCheckstrs("pure",                                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLpure                                       ))))) { puts("\t\tpure");                           } \
+    if (0x00 != caolCheckstrs("reproducible",                               NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLreproducible                               ))))) { puts("\t\treproducible");                   } \
+    if (0x00 != caolCheckstrs("retain",                                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLretain                                     ))))) { puts("\t\tretain");                         } \
+    if (0x00 != caolCheckstrs("returns_nonnull",                            NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLreturns_nonnull                            ))))) { puts("\t\treturns_nonnull");                } \
+    if (0x00 != caolCheckstrs("returns_twice",                              NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLreturns_twice                              ))))) { puts("\t\treturns_twice");                  } \
+    if (0x00 != caolCheckstrs("section(NCAOLsection)",                      NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLsection(NCAOLsection)                      ))))) { puts("\t\tsection");                        } \
+    if (0x00 != caolCheckstrs("sentinel(NCAOLposition)",                    NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLsentinel(NCAOLposition)                    ))))) { puts("\t\tsentinel");                       } \
+    if (0x00 != caolCheckstrs("target (NCAOL_VA_ARGS)",                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtarget((NCAOL_VA_ARGS))                    ))))) { puts("\t\ttarget");                         } \
+    if (0x00 != caolCheckstrs("target_version(NCAOLoption)",                NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtarget_version(NCAOLoption)                ))))) { puts("\t\ttarget_version");                 } \
+    if (0x00 != caolCheckstrs("target_clones(NCAOLoptions)",                NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtarget_clones(NCAOLoptions)                ))))) { puts("\t\ttarget_clones");                  } \
+    if (0x00 != caolCheckstrs("tls_model(NCAOLtls_model)",                  NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtls_model(NCAOLtls_model)                  ))))) { puts("\t\ttls_model");                      } \
+    if (0x00 != caolCheckstrs("transparent_union",                          NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtransparent_union                          ))))) { puts("\t\ttransparent_union");              } \
+    if (0x00 != caolCheckstrs("unavailable(NCAOLmsg)",                      NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLunavailable(NCAOLmsg)                      ))))) { puts("\t\tunavailable");                    } \
+    if (0x00 != caolCheckstrs("uninitialized",                              NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLuninitialized                              ))))) { puts("\t\tuninitialized");                  } \
+    if (0x00 != caolCheckstrs("unsequenced",                                NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLunsequenced                                ))))) { puts("\t\tunsequenced");                    } \
+    if (0x00 != caolCheckstrs("unused",                                     NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmaybe_unused                               ))))) { puts("\t\tmaybe_unused");                   } \
+    if (0x00 != caolCheckstrs("used",                                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLused                                       ))))) { puts("\t\tused");                           } \
+    if (0x00 != caolCheckstrs("vector_size(NCAOLbytes)",                    NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLvector_size(NCAOLbytes)                    ))))) { puts("\t\tvector_size");                    } \
+    if (0x00 != caolCheckstrs("visibility(NCAOLvisibility_type)",           NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLvisibility(NCAOLvisibility_type)           ))))) { puts("\t\tvisibility");                     } \
+    if (0x00 != caolCheckstrs("warn_unused_result",                         NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnodiscard                                  ))))) { puts("\t\tnodiscard");                      } \
+    if (0x00 != caolCheckstrs("weak",                                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLweak                                       ))))) { puts("\t\tweak");                           } \
+    if (0x00 != caolCheckstrs("weakref(NCAOLtarget)",                       NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLweakref(NCAOLtarget)                       ))))) { puts("\t\tweakref");                        } \
+    if (0x00 != caolCheckstrs("zero_call_used_regs(NCAOLchoice)",           NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLzero_call_used_regs(NCAOLchoice)           ))))) { puts("\t\tzero_call_used_regs");            } \
     puts("\t}\n}")
 
 #define caolDiagnosisCompEXTs() \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, alias(target)                                  ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, aligned(alignment)                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, alloc_align(position)                          ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, alloc_size(...)                                ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, always_inline(...)                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, artificial                                     ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, assume_aligned(...)                            ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, btf_decl_tag(str)                              ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, btf_type_tag(arg)                              ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, cleanup(func)                                  ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, cold                                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, hot                                            ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, common                                         ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nocommon                                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, const                                          ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, constructor(priority)                          ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, destructor(priority)                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, counted_by(count)                              ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, deprecated(msg)                                ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, error(msg)                                     ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, warning(msg)                                   ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, flag_enum                                      ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, flatten                                        ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, format(archetype, string_index, first_to_check)))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, format_arg(string_index)                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, gnu_inline                                     ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, ifunc(resolver)                                ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, interrupt                                      ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, leaf                                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, malloc(...)                                    ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, may_alias                                      ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, mode(mode)                                     ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, musttail                                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, naked                                          ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_profile_instrument_function(...)            ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_sanitize(option)                            ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_sanitize_address                            ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_address_safety_analysis(...)                ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_sanitize_thread                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_split_stack                                 ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_stack_protector                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, no_stack_protector                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, noinline                                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nonnull(...)                                   ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nonstring                                      ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, noreturn                                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nothrow                                        ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, optimize                                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, packed                                         ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, patchable_function_entry                       ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, pure                                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, reproducible                                   ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, retain                                         ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, returns_nonnull                                ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, returns_twice                                  ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, section(section)                               ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, sentinel(position)                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, target(...)                                    ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, target_version(option)                         ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, target_clones(options)                         ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, tls_model(tls_model)                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, transparent_union                              ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, unavailable(msg)                               ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, uninitialized                                  ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, unsequenced                                    ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, maybe_unused                                   ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, used                                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, vector_size(bytes)                             ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, visibility(visibility_type)                    ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, nodiscard                                      ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, weak                                           ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, weakref(target)                                ))); \
-    puts(CAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(EXT, GET, zero_call_used_regs(choice)                    )))
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalias(NCAOLtarget)                         )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLaligned(NCAOLalignment)                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalloc_align(NCAOLposition)                 )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalloc_size((NCAOL_VA_ARGS))                )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLalways_inline                              )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLartificial                                 )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLassume_aligned((NCAOL_VA_ARGS))            )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLbtf_decl_tag(NCAOLstr)                     )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLbtf_type_tag(NCAOLarg)                     )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcleanup(NCAOLfunc)                         )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcold                                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLhot                                        )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcommon                                     )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnocommon                                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLconst                                      )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLconstructor(NCAOLpriority)                 )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLdestructor(NCAOLpriority)                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLcounted_by(NCAOLcount)                     )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLdeprecated(NCAOLmsg)                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLerror(NCAOLmsg)                            )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLwarning(NCAOLmsg)                          )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLflag_enum                                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLflatten                                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLformat(NCAOLarchT, NCAOLindex, NCAOLcheck) )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLformat_arg(NCAOLstring_index)              )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLgnu_inline                                 )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLifunc(NCAOLresolver)                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLinterrupt                                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLleaf                                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmalloc((NCAOL_VA_ARGS))                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmay_alias                                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmode(NCAOLmode)                            )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmusttail                                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnaked                                      )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_profile_instrument_function             )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_sanitize(NCAOLoption)                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_sanitize_address                        )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_sanitize_thread                         )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_split_stack                             )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLno_stack_protector                         )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnoinline                                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnonnull((NCAOL_VA_ARGS))                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnonstring                                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnoreturn                                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnothrow                                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLoptimize                                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLpacked                                     )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLpatchable_function_entry                   )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLpure                                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLreproducible                               )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLretain                                     )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLreturns_nonnull                            )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLreturns_twice                              )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLsection(NCAOLsection)                      )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLsentinel(NCAOLposition)                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtarget((NCAOL_VA_ARGS))                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtarget_version(NCAOLoption)                )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtarget_clones(NCAOLoptions)                )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtls_model(NCAOLtls_model)                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLtransparent_union                          )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLunavailable(NCAOLmsg)                      )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLuninitialized                              )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLunsequenced                                )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLmaybe_unused                               )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLused                                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLvector_size(NCAOLbytes)                    )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLvisibility(NCAOLvisibility_type)           )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLnodiscard                                  )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLweak                                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLweakref(NCAOLtarget)                       )))); \
+    puts(NCAOL_DIAGNOSIS_DEF_STR(caolSpecsComp(NCAOL_EXT_GET(NCAOLzero_call_used_regs(NCAOLchoice)           ))))
+
 
 #endif
