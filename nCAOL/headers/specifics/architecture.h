@@ -24,6 +24,8 @@
     #elif (NCAOL_SPECS_ARCH_DEF_ARCH_ID == NCAOL_SPECS_ARCH_VAL_ID_Motorola68k)
     #elif (NCAOL_SPECS_ARCH_DEF_ARCH_ID == NCAOL_SPECS_ARCH_VAL_ID_SystemZ)
     #endif
+#else
+    #error "nCAOL: Apologizes, but it seems like the utilized Architecture is unsupported! - But please do feel free to send a request, if you have the spare time."
 #endif
 
 

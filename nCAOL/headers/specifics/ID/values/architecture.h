@@ -6,6 +6,7 @@
 #define NCAOL_SPECS_ARCH_VAL_CLASS_EPIC 1
 #define NCAOL_SPECS_ARCH_VAL_CLASS_CISC 2
 
+
 #define NCAOL_SPECS_ARCH_VAL_ID_Alpha             0
 #define NCAOL_SPECS_ARCH_VAL_ID_ARM               1
 #define NCAOL_SPECS_ARCH_VAL_ID_ARM_Thumb         2
@@ -23,6 +24,7 @@
 #define NCAOL_SPECS_ARCH_VAL_ID_Intel_x86_16Bit   14
 #define NCAOL_SPECS_ARCH_VAL_ID_Motorola68k       15
 #define NCAOL_SPECS_ARCH_VAL_ID_SystemZ           16
+
 
 #define NCAOL_SPECS_ARCH_VAL_NAME_Alpha             "Alpha"
 #define NCAOL_SPECS_ARCH_VAL_NAME_ARM               "ARM"

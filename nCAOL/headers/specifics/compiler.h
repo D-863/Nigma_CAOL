@@ -19,8 +19,10 @@
     #elif (NCAOL_SPECS_COMP_DEF_COMPILER_ID == NCAOL_SPECS_COMP_VAL_ID_ARMCompiler)
         #error "nCAOL: Apologizes, but while this compiler is supported, it has yet to be implemented nor tested."
     #elif (NCAOL_SPECS_COMP_DEF_COMPILER_ID == NCAOL_SPECS_COMP_VAL_ID_Clang)
-        //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
-        //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+        //Platform-specific C89 standard header that Hopefully defines the utilized CSTDLIB's identifier.
+        //(This is merely a bootstrap for compilations that occur on a non-bare system,
+        //taking advantage of Global Compiler Variables to resolve the OS<->CSTDLIB inclusion paradox;
+        //The actual proper CSTDLIB inclusions of C-Standard headers occur within 'headers/defines.h')
         #include <limits.h>
 
         
@@ -123,8 +125,10 @@
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_weakref(NCAOLtarget)                       weakref(NCAOLtarget)
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_zero_call_used_regs(NCAOLchoice)           zero_call_used_regs(NCAOLchoice)
     #elif (NCAOL_SPECS_COMP_DEF_COMPILER_ID == NCAOL_SPECS_COMP_VAL_ID_GCC)
-        //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
-        //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+        //Platform-specific C89 standard header that Hopefully defines the utilized CSTDLIB's identifier.
+        //(This is merely a bootstrap for compilations that occur on a non-bare system,
+        //taking advantage of Global Compiler Variables to resolve the OS<->CSTDLIB inclusion paradox;
+        //The actual proper CSTDLIB inclusions of C-Standard headers occur within 'headers/defines.h')
         #include <limits.h>
 
 
@@ -228,8 +232,10 @@
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_weakref(NCAOLtarget)                       weakref(NCAOLtarget)
         #define NCAOL_SPECS_COMP_DEF_EXTNAME_zero_call_used_regs(NCAOLchoice)           zero_call_used_regs(NCAOLchoice)
     #elif (NCAOL_SPECS_COMP_DEF_COMPILER_ID == NCAOL_SPECS_COMP_VAL_ID_MicrosoftVisualCPP)
-        //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
-        //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+        //Platform-specific C89 standard header that Hopefully defines the utilized CSTDLIB's identifier.
+        //(This is merely a bootstrap for compilations that occur on a non-bare system,
+        //taking advantage of Global Compiler Variables to resolve the OS<->CSTDLIB inclusion paradox;
+        //The actual proper CSTDLIB inclusions of C-Standard headers occur within 'headers/defines.h')
         #include <limits.h>
 
 
@@ -336,8 +342,10 @@
            (NCAOL_SPECS_COMP_DEF_COMPILER_ID == NCAOL_SPECS_COMP_VAL_ID_MinGWw64_32B) || \
            (NCAOL_SPECS_COMP_DEF_COMPILER_ID == NCAOL_SPECS_COMP_VAL_ID_MinGWw64_64B)    \
         )
-        //System-specific C89 standard header that Hopefully defines the utilized C-Standard Library's identifier.
-        //(The inclusion of other C-Standard headers are continued within stdlibraspecs.h)
+        //Platform-specific C89 standard header that Hopefully defines the utilized CSTDLIB's identifier.
+        //(This is merely a bootstrap for compilations that occur on a non-bare system,
+        //taking advantage of Global Compiler Variables to resolve the OS<->CSTDLIB inclusion paradox;
+        //The actual proper CSTDLIB inclusions of C-Standard headers occur within 'headers/defines.h')
         #include <limits.h>
 
 

@@ -8,6 +8,7 @@
 #define NCAOL_SPECS_OS_VAL_SUBJECT_DOS       3
 #define NCAOL_SPECS_OS_VAL_SUBJECT_Other     4
 
+
 #define NCAOL_SPECS_OS_VAL_DOMAIN_PWBUnix    0
 #define NCAOL_SPECS_OS_VAL_DOMAIN_BSD        1
 #define NCAOL_SPECS_OS_VAL_DOMAIN_Unix32V    2
@@ -23,6 +24,7 @@
 #define NCAOL_SPECS_OS_VAL_DOMAIN_OS2        12
 #define NCAOL_SPECS_OS_VAL_DOMAIN_Windows    13
 #define NCAOL_SPECS_OS_VAL_DOMAIN_Other      14
+
 
 #define NCAOL_SPECS_OS_VAL_ID_AIX                 0
 #define NCAOL_SPECS_OS_VAL_ID_Android             1
@@ -89,6 +91,7 @@
 #define NCAOL_SPECS_OS_VAL_ID_Windows_CE          62
 #define NCAOL_SPECS_OS_VAL_ID_WindU_Environment   63
 #define NCAOL_SPECS_OS_VAL_ID_zOS                 64
+
 
 #define NCAOL_SPECS_OS_VAL_NAME_AIX                 "AIX"
 #define NCAOL_SPECS_OS_VAL_NAME_Android             "Android"

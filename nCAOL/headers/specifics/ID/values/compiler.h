@@ -7,6 +7,7 @@
 #define NCAOL_SPECS_COMP_VAL_SUBJECT_RiscV   2
 #define NCAOL_SPECS_COMP_VAL_SUBJECT_Generic 3
 
+
 #define NCAOL_SPECS_COMP_VAL_DOMAIN_Altium             0
 #define NCAOL_SPECS_COMP_VAL_DOMAIN_KEIL               1
 #define NCAOL_SPECS_COMP_VAL_DOMAIN_ARMCompiler        2
@@ -14,6 +15,7 @@
 #define NCAOL_SPECS_COMP_VAL_DOMAIN_GCC                4
 #define NCAOL_SPECS_COMP_VAL_DOMAIN_MicrosoftVisualCPP 5
 #define NCAOL_SPECS_COMP_VAL_DOMAIN_MinGW              6
+
 
 #define NCAOL_SPECS_COMP_VAL_ID_MicroBlazeC        0
 #define NCAOL_SPECS_COMP_VAL_ID_CtoHardware        1
@@ -27,6 +29,7 @@
 #define NCAOL_SPECS_COMP_VAL_ID_MinGW32            9
 #define NCAOL_SPECS_COMP_VAL_ID_MinGWw64_32B       10
 #define NCAOL_SPECS_COMP_VAL_ID_MinGWw64_64B       11
+
 
 #define NCAOL_SPECS_COMP_VAL_NAME_MicroBlazeC        "Altium MicroBlaze C"
 #define NCAOL_SPECS_COMP_VAL_NAME_CtoHardware        "Altium C-to-Hardware"
